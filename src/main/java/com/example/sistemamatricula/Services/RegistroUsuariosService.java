@@ -31,6 +31,7 @@ public class RegistroUsuariosService {
             case "profesor" -> 2;
             default -> throw new RuntimeException("rol invalido");
         };
+
     }
 
 

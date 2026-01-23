@@ -1,5 +1,6 @@
 package com.example.sistemamatricula.Controlador;
 
+import com.example.sistemamatricula.Escena.MovimientoVentanas;
 import com.example.sistemamatricula.Services.RegistroUsuariosService;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -19,6 +20,7 @@ public class RegistroUsuarioControlador {
 
     private final RegistroUsuariosService registroUsuariosService= new RegistroUsuariosService();
 
+    private MovimientoVentanas movimientoVentanas= new MovimientoVentanas();
     @FXML
     public void registrarDatos(){
 
@@ -36,9 +38,12 @@ public class RegistroUsuarioControlador {
         String rolString = seleccionado.getText().toLowerCase();
 
 
+
         try{
             registroUsuariosService.registrarUsuario(dni,correo,contrasena,rolString);
             System.out.println("SE REGISTRÓ");
+            movimientoVentanas.mover("RegistroDatosEstudiantes.fxml","Ingreso de datos personales");
+
         }catch (Exception e){
             System.out.println("Error al registrar usuario");
         }
