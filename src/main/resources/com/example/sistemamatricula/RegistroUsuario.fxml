@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistemamatricula.Controlador.RegistroUsuarioControlador">
+
+   <children>
+      <Button fx:id="registrarUsuario" layoutX="20.0" layoutY="360.0" mnemonicParsing="false" onAction="#registrarDatos" text="IngresarDatos" />
+      <Button layoutX="530.0" layoutY="360.0" mnemonicParsing="false" text="Atras" />
+      <TextField fx:id="txt_dni" layoutX="199.0" layoutY="62.0" />
+      <TextField fx:id="txt_correo" layoutX="199.0" layoutY="109.0" />
+      <PasswordField fx:id="txt_contrasena" layoutX="199.0" layoutY="152.0" />
+      <Label layoutX="117.0" layoutY="62.0" text="dni" />
+      <Label layoutX="117.0" layoutY="109.0" text="correo" />
+      <Label layoutX="117.0" layoutY="158.0" text="contraseña" />
+
+      <RadioButton layoutX="430.0" layoutY="30.0" text="Estudiante">
+         <toggleGroup>
+            <ToggleGroup fx:id="Grupo1"/>
+         </toggleGroup>
+      </RadioButton>
+
+      <RadioButton
+              layoutX="430.0"
+              layoutY="58.0"
+              text="Profesor"
+              toggleGroup="$Grupo1"/>
+
+
+   </children>
+</AnchorPane>

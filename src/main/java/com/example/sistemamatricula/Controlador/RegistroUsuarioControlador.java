@@ -1,0 +1,52 @@
+package com.example.sistemamatricula.Controlador;
+
+import com.example.sistemamatricula.Services.RegistroUsuariosService;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+
+public class RegistroUsuarioControlador {
+    @FXML
+    private ToggleGroup Grupo1;
+
+    @FXML
+    private TextField txt_dni;
+
+    @FXML
+    private TextField txt_correo;
+
+    @FXML
+    private PasswordField txt_contrasena;
+
+    private final RegistroUsuariosService registroUsuariosService= new RegistroUsuariosService();
+
+    @FXML
+    public void registrarDatos(){
+
+        String dni =txt_dni.getText();
+        String correo = txt_correo.getText();
+        String contrasena = txt_contrasena.getText();
+        if (Grupo1.getSelectedToggle()==null){
+            System.out.println("debe seleccionar un rol");
+            return;
+        }
+        //Seleccionamos el radio button con respecto al grupo
+        //donde está
+        RadioButton seleccionado =
+                (RadioButton) Grupo1.getSelectedToggle();
+        String rolString = seleccionado.getText().toLowerCase();
+
+
+        try{
+            registroUsuariosService.registrarUsuario(dni,correo,contrasena,rolString);
+            System.out.println("SE REGISTRÓ");
+        }catch (Exception e){
+            System.out.println("Error al registrar usuario");
+        }
+
+
+
+
+    }
+
+
+}

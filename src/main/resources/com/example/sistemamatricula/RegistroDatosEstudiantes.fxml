@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.sistemamatricula.Controlador.RegistroDatosEstudiantesController"
+            prefWidth="600.0" prefHeight="400.0">
+
+    <children>
+        <GridPane layoutX="50" layoutY="40"
+                  hgap="10" vgap="15">
+
+            <!-- Nombres -->
+            <Label text="Nombres:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtNombres"
+                       GridPane.rowIndex="0" GridPane.columnIndex="1"
+                       prefWidth="250"/>
+
+            <!-- Apellidos -->
+            <Label text="Apellidos:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtApellidos"
+                       GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <!-- Teléfono -->
+            <Label text="Teléfono:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtTelefono"
+                       GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <!-- Fecha de nacimiento -->
+            <Label text="Fecha de nacimiento:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <DatePicker fx:id="dpFechaNacimiento"
+                        GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <!-- Botón -->
+            <Button text="Registrar"
+                    GridPane.rowIndex="4"
+                    GridPane.columnIndex="1"
+                    onAction="#registrarEstudiante"
+            />
+        </GridPane>
+    </children>
+
+</AnchorPane>
