@@ -3,7 +3,11 @@ package com.example.sistemamatricula.Controlador;
 import com.example.sistemamatricula.Escena.MovimientoVentanas;
 import com.example.sistemamatricula.Services.RegistroUsuariosService;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 public class RegistroUsuarioControlador {
     @FXML
@@ -40,12 +44,23 @@ public class RegistroUsuarioControlador {
 
 
         try{
-            registroUsuariosService.registrarUsuario(dni,correo,contrasena,rolString);
+            int id_usuario=registroUsuariosService.registrarUsuario(dni,correo,contrasena,rolString);
             System.out.println("SE REGISTRÓ");
-            movimientoVentanas.mover("RegistroDatosEstudiantes.fxml","Ingreso de datos personales");
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistemamatricula/RegistroDatosEstudiantes.fxml"));
+
+            Parent root = loader.load();
+
+            RegistroDatosEstudiantesController controller = loader.getController();
+            //Obtiene id
+            controller.setId_usuario(id_usuario);
+            Stage stage = (Stage) txt_dni.getScene().getWindow();
+            stage.setScene(new Scene(root));
+
 
         }catch (Exception e){
             System.out.println("Error al registrar usuario");
+
         }
 
 

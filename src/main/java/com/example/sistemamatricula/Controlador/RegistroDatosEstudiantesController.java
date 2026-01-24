@@ -1,16 +1,14 @@
 package com.example.sistemamatricula.Controlador;
 
-import com.example.sistemamatricula.Services.RegistroEstudianteServices;
 import com.example.sistemamatricula.Services.RegistroUsuariosService;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 import java.time.LocalDate;
 
 public class RegistroDatosEstudiantesController {
-    RegistroEstudianteServices registroEstudianteServices= new RegistroEstudianteServices();
+    RegistroUsuariosService registroEstudianteServices= new RegistroUsuariosService();
     @FXML
     private TextField txtNombres;
     @FXML
@@ -20,6 +18,12 @@ public class RegistroDatosEstudiantesController {
     @FXML
     private DatePicker dpFechaNacimiento;
 
+    private int id_usuario;
+    public void setId_usuario(int id_usuario){
+        this.id_usuario=id_usuario;
+    }
+
+
     @FXML
     public void registrarEstudiante(){
         String nombre = txtNombres.getText();
@@ -27,7 +31,7 @@ public class RegistroDatosEstudiantesController {
         String telefono = txtTelefono.getText();
         LocalDate fecha_nacimiento = dpFechaNacimiento.getValue();
         try{
-            registroEstudianteServices.registarDatosPersonales(nombre,apellido,telefono,fecha_nacimiento);
+            registroEstudianteServices.registarDatosPersonales(nombre,apellido,telefono,fecha_nacimiento,id_usuario);
             System.out.println("Se registro el usuario "+ nombre);
 
         }catch (Exception e){

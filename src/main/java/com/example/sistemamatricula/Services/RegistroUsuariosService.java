@@ -1,12 +1,16 @@
 package com.example.sistemamatricula.Services;
 
+import com.example.sistemamatricula.Dao.RegistroEstudianteDao;
 import com.example.sistemamatricula.Dao.RegistroUsuarioDao;
+
+import java.time.LocalDate;
 
 public class RegistroUsuariosService {
     //llamada al Dao
     private final RegistroUsuarioDao registroDao = new RegistroUsuarioDao();
+    private final RegistroEstudianteDao registroEstudianteDao= new RegistroEstudianteDao();
 
-    public void registrarUsuario(String dni,String correo,String contrasena,String rol){
+    public int registrarUsuario(String dni,String correo,String contrasena,String rol){
 
         if(dni==null || dni.isBlank()){
             throw new RuntimeException("Dni obligatorio");
@@ -18,10 +22,12 @@ public class RegistroUsuariosService {
             throw new RuntimeException("Correo no valido");
         }
 
-        boolean registrado = registroDao.registro(dni,correo,contrasena,id_rol);
-        if(!registrado){
-            throw new RuntimeException("No se pudo registrar al usuario");
+      int id_usuario= registroDao.registro(dni,correo,contrasena,id_rol);
+        if(id_usuario<= 0){
+            throw new RuntimeException("No se pudo registrar");
         }
+        return id_usuario;
+
     }
 
     public int convertirRol(String mensaje){
@@ -34,5 +40,35 @@ public class RegistroUsuariosService {
 
     }
 
+    public void registarDatosPersonales(String nombre , String apellido, String telefono, LocalDate fecha,int id_usuario)
+    {
+        if (nombre.isEmpty()){
+            throw new RuntimeException("Error en el nombre estudiante");
+        }
+        if (apellido.isEmpty()){
+            throw new RuntimeException("Error en el nombre apellido");
+        }
+        if (telefono.isEmpty()){
+            throw new RuntimeException("Error en el teledono Estudiante");
+        }
+        if (fecha== null){
+
+            throw  new RuntimeException("Error en la fecha de nacimiento del estudiante");
+        }
+
+
+
+        boolean estudianteRegistrado = registroEstudianteDao.ingresarDatosEstudiante(nombre,apellido,telefono,fecha,id_usuario);
+        if (!estudianteRegistrado){
+            throw  new RuntimeException("Error en el agregao del Estudiante");
+        }
+
+
+
+    }
 
 }
+
+
+
+

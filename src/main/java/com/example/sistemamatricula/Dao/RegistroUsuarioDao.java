@@ -5,9 +5,9 @@ import com.example.sistemamatricula.Util.ConexionBd;
 import java.sql.*;
 
 public class RegistroUsuarioDao {
-    private int id_usuarioRegistrado = 0;
 
-    public boolean registro(String dni, String correo, String contrasena, int rol) {
+
+    public int registro(String dni, String correo, String contrasena, int rol) {
 
         String sql = """
             INSERT INTO usuario (dni, correo, password, id_rol)
@@ -22,19 +22,15 @@ public class RegistroUsuarioDao {
             ps.setString(3, contrasena);
             ps.setInt(4, rol);
 
-            int filas = ps.executeUpdate(); // ← SE EJECUTA UNA SOLA VEZ
+          if (ps.executeUpdate()==1){
+              ResultSet rs = ps.getGeneratedKeys();
+              if (rs.next()){
+                  return rs.getInt(1);
+              }
 
-            if (filas == 1) {
-                ResultSet rs = ps.getGeneratedKeys();
-                if (rs.next()) {
-                    id_usuarioRegistrado = rs.getInt(1);
-                }
-                // Sale si todo es verdadero
-                return true;
-            }
+          }
 
-            return false;
-
+          return -1;
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -43,9 +39,6 @@ public class RegistroUsuarioDao {
 
 
 
-    public int getId_usuarioRegistrado() {
-        return id_usuarioRegistrado;
-    }
 }
 
 
