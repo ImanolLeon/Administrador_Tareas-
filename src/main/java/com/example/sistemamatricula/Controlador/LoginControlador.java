@@ -44,8 +44,21 @@ public class LoginControlador {
         Usuario usuario= dao.login(username,password);
 
         if(usuario != null){
-            System.out.println("usuario ingresado , su rol es = " + usuario.getRol());
-            ventanas.mover("Principal.fxml","Principal");
+
+
+            switch (usuario.getRol()){
+                case 1 : ventanas.mover("Principal.fxml","PanelAdmin");
+                    break;
+                case 2 : ventanas.mover("Matricula/EstudianteMatricula.fxml","Matricula estudiante");
+                    break;
+
+                case 3 : ventanas.mover("Matricula/ProfesorMatricula.fxml","Matricula profesor");
+                    break;
+ 
+                default:
+                    System.out.println("Rol desconocido");
+            }
+
         }
         else{
             System.out.println("Acceso denegado");

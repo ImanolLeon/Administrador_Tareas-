@@ -9,25 +9,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UsuarioDao {
-    public Usuario login(String dni, String contrasena ) {
-        //Buscar
-        String sql = """
-                    SELECT u.id_usuario, u.dni,
-                           r.nombre AS rol,
-                           e.nombre AS estado
-                    FROM usuario u
-                    JOIN rol r ON u.id_rol = r.id_rol
-                    JOIN estado e ON u.id_estado = e.id_estado
-                    WHERE u.dni = ?
-                      AND u.password = ?
-                      AND e.nombre = 'ACTIVO'
-                """;
-        Connection con = ConexionBd.getConexion();
+    public Usuario login(String dni, String contrasena) {
 
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1,dni);
-            ps.setString(2,contrasena);
+        String sql = """
+      SELECT u.id_usuario,
+                         u.dni,
+                         u.correo,
+                         u.id_rol   AS rol,
+                         u.id_estado AS estado
+                  FROM usuario u
+                  WHERE u.dni = ?
+                    AND u.password = ?
+                    AND u.id_estado = 1;
+                
+    """;
+
+        try (Connection con = ConexionBd.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, dni);
+            ps.setString(2, contrasena);
 
             ResultSet rs = ps.executeQuery();
 
@@ -35,20 +36,14 @@ public class UsuarioDao {
                 return new Usuario(
                         rs.getInt("id_usuario"),
                         rs.getString("dni"),
-                        rs.getString("rol"),
+                        rs.getInt("rol"),
                         rs.getInt("estado"),
                         rs.getString("correo")
                 );
             }
+
         } catch (SQLException e) {
-            System.out.println("Error en login");
             e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
 
         return null;
