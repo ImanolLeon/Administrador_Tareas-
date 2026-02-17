@@ -39,6 +39,9 @@
                     GridPane.columnIndex="1"
                     onAction="#registrarEstudiante"
             />
+
+
+
         </GridPane>
     </children>
 

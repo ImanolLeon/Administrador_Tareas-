@@ -43,7 +43,7 @@ public class CursoDao {
 
     public  int registrarCurso(Curso curso){
         String sql = """
-                Insert into curso(nombre,creditos,cantidadEstudiantes)
+                Insert into curso(nombre,creditos,cantidad_estudiantes)
                 values (?,?,?)
                 """;
         try(Connection connection= ConexionBd.getConexion();
@@ -60,8 +60,6 @@ public class CursoDao {
                 }
 
             }
-
-
 
         }catch (Exception e){
             throw new  RuntimeException(e);

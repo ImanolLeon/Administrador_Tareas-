@@ -43,19 +43,36 @@ public class RegistroUsuarioControlador {
 
 
 
+
         try{
             int id_usuario=registroUsuariosService.registrarUsuario(dni,correo,contrasena,rolString);
             System.out.println("SE REGISTRÓ");
+            FXMLLoader loader;
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sistemamatricula/RegistroDatosEstudiantes.fxml"));
+            //Veremos si el rol es estudiante o profesor
+            if (rolString.equalsIgnoreCase("estudiante")){
+                loader = new FXMLLoader(getClass().getResource("/com/example/sistemamatricula/RegistroDatosEstudiantes.fxml"));
 
-            Parent root = loader.load();
+                Parent root = loader.load();
 
-            RegistroDatosEstudiantesController controller = loader.getController();
-            //Obtiene id
-            controller.setId_usuario(id_usuario);
-            Stage stage = (Stage) txt_dni.getScene().getWindow();
-            stage.setScene(new Scene(root));
+                RegistroDatosEstudiantesController controller = loader.getController();
+                //Obtiene id
+                controller.setId_usuario(id_usuario);
+                Stage stage = (Stage) txt_dni.getScene().getWindow();
+                stage.setScene(new Scene(root));
+            } else if (rolString.equalsIgnoreCase("profesor")) {
+
+                loader = new FXMLLoader(getClass().getResource("/com/example/sistemamatricula/RegistroDatosProfesor.fxml"));
+
+                Parent root = loader.load();
+
+                RegistroProfesorControlador controller = loader.getController();
+                //El id debe esatr en el controlador porque lo está creando para esa variable
+                controller.setIdUsuario(id_usuario);
+                Stage stage = (Stage) txt_dni.getScene().getWindow();
+                stage.setScene(new Scene(root));
+
+            }
 
 
         }catch (Exception e){

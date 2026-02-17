@@ -40,8 +40,9 @@
                     <TableView fx:id="tblCursosDisponibles">
                         <columns>
                             <TableColumn text="Código" prefWidth="80"/>
-                            <TableColumn text="Curso" prefWidth="200"/>
+                            <TableColumn text="Curso" prefWidth="80"/>
                             <TableColumn text="Créditos" prefWidth="80"/>
+                            <TableColumn text="vacantes" prefWidth="90" />
                         </columns>
                     </TableView>
                 </VBox>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistemamatricula.Controlador.CreacionCurso">
+
+    <GridPane layoutX="50" layoutY="40"
+              hgap="10" vgap="15">
+
+        <!-- nombre-->
+        <Label text="Nombre del Curso" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtNombreCurso"
+                   GridPane.rowIndex="0" GridPane.columnIndex="1"
+                   prefWidth="250"/>
+
+        <!-- creditos -->
+        <Label text="creditos" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtCreditosCurso"
+                   GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <!-- cantidad de estudiantes -->
+        <Label text="Cantidad de estudiantes" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtEstudiantesCurso"
+                   GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <!-- Botón -->
+        <Button text="Registrar"
+                GridPane.rowIndex="3"
+                GridPane.columnIndex="1"
+                onAction="#registrarCurso"
+        />
+        <Button text="Atrás"
+                GridPane.rowIndex="3"
+                GridPane.columnIndex="2"
+                onAction="#irPagPrincipal"
+        />
+
+
+
+    </GridPane>
+</AnchorPane>

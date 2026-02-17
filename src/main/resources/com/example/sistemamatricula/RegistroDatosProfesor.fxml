@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.sistemamatricula.Controlador.RegistroProfesorControlador"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <GridPane layoutX="50" layoutY="40"
+              hgap="10" vgap="15">
+
+        <!-- Nombres -->
+        <Label text="Nombres:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtNombres"
+                   GridPane.rowIndex="0" GridPane.columnIndex="1"
+                   prefWidth="250"/>
+
+        <!-- Apellidos -->
+        <Label text="Apellidos:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtApellidos"
+                   GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <!-- Teléfono -->
+        <Label text="Teléfono:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtTelefono"
+                   GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        <!-- Teléfono -->
+        <Label text="especilidad:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtEspecialdad"
+                   GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+
+        <!-- Fecha de nacimiento -->
+        <Label text="Gmail:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtGmail"
+                   GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+        <!-- Botón -->
+        <Button text="Registrar"
+                GridPane.rowIndex="5"
+                GridPane.columnIndex="1"
+                onAction="#registrarProfesor"
+        />
+
+
+
+    </GridPane>
+
+</AnchorPane>

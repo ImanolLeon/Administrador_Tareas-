@@ -33,8 +33,8 @@ public class RegistroUsuariosService {
     public int convertirRol(String mensaje){
 
         return switch (mensaje.toLowerCase()){
-            case "estudiante" -> 1;
-            case "profesor" -> 2;
+            case "estudiante" -> 2;
+            case "profesor" -> 3;
             default -> throw new RuntimeException("rol invalido");
         };
 
@@ -56,16 +56,15 @@ public class RegistroUsuariosService {
             throw  new RuntimeException("Error en la fecha de nacimiento del estudiante");
         }
 
-
-
         boolean estudianteRegistrado = registroEstudianteDao.ingresarDatosEstudiante(nombre,apellido,telefono,fecha,id_usuario);
         if (!estudianteRegistrado){
             throw  new RuntimeException("Error en el agregao del Estudiante");
         }
 
-
-
     }
+
+
+
 
 }
 
