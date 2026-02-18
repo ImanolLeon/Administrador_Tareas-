@@ -14,17 +14,15 @@ public class CreacionCurso {
     private TextField txtNombreCurso;
     @FXML
     private TextField txtCreditosCurso;
-    @FXML
-    private TextField txtEstudiantesCurso;
+
 
     public void registrarCurso(){
 
         String nombre = txtNombreCurso.getText();
         int credito = Integer.parseInt(txtCreditosCurso.getText());
-        int cantidadEstudiantes = Integer.parseInt(txtEstudiantesCurso.getText());
 
         try{
-            cursoServices.registrarCurso(nombre,credito,cantidadEstudiantes);
+            cursoServices.registrarCurso(nombre,credito);
             System.out.println("Curso :"+ nombre + " Registrado");
 
 

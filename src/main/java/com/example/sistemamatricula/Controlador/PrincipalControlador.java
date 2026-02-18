@@ -9,7 +9,7 @@ public class PrincipalControlador {
 
 
     public void eliminarCurso(){
-
+    movimientoVentanas.mover("Curso/EliminacionCursos.fxml","Lista de cursos");
     }
 
     public void crearCurso(){

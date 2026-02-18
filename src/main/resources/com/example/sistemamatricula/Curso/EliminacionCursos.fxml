@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane  xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.sistemamatricula.Controlador.EliminacionCursos"
+            prefHeight="400.0" prefWidth="600.0" >
+
+    <center>
+        <TableView fx:id="tablaCursos">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
+                <TableColumn fx:id="colNombre" text="Nombre" prefWidth="150"/>
+                <TableColumn fx:id="colCreditos" text="Créditos" prefWidth="80"/>
+            </columns>
+        </TableView>
+    </center>
+
+
+
+
+    <bottom>
+        <Button text="Eliminar Curso"
+                onAction="#eliminarCurso"/>
+    </bottom>
+
+
+
+
+</BorderPane >

@@ -7,8 +7,31 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CursoDao {
+
+    public List<Curso> listaCursos(){
+        List<Curso> cursos = new ArrayList<>();
+        String sql = "Select * from curso";
+
+        try(Connection connection = ConexionBd.getConexion();
+            PreparedStatement preparedStatement= connection.prepareStatement(sql);
+            ResultSet resultSet= preparedStatement.executeQuery()){
+
+            while (resultSet.next()){
+                Curso curso= new Curso();
+                curso.setId_curso(resultSet.getInt("id_curso"));
+                curso.setNombre(resultSet.getString("nombre"));
+                curso.setCreditos(resultSet.getInt("creditos"));
+                cursos.add(curso);
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+        return cursos;
+    }
 
     public int devolverId(String nombreCurso) {
         String sql = """
@@ -43,15 +66,14 @@ public class CursoDao {
 
     public  int registrarCurso(Curso curso){
         String sql = """
-                Insert into curso(nombre,creditos,cantidad_estudiantes)
-                values (?,?,?)
+                Insert into curso(nombre,creditos)
+                values (?,?)
                 """;
         try(Connection connection= ConexionBd.getConexion();
             PreparedStatement preparedStatement=connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setString(1, curso.getNombre());
             preparedStatement.setInt(2, curso.getCreditos());
-            preparedStatement.setInt(3, curso.getCantidad_estudiantes());
 
             if ( preparedStatement.executeUpdate()==1){
                 ResultSet rs= preparedStatement.getGeneratedKeys();

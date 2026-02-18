@@ -10,4 +10,6 @@ module com.example.sistemamatricula {
     exports com.example.sistemamatricula.Controlador;
     exports com.example.sistemamatricula.Escena;
     opens com.example.sistemamatricula.Escena to javafx.fxml;
+    opens com.example.sistemamatricula.Modelo to javafx.base;
+
 }

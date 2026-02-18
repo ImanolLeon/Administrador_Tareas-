@@ -5,7 +5,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistemamatricula.Controlador.PrincipalControlador">
    <children>
-      <Button mnemonicParsing="false" text="crear curso"  onAction="#crearCurso"/>
-      <Button mnemonicParsing="false" text="eliminar curso"  onAction="#eliminarCurso"/>
+      <Button mnemonicParsing="false" onAction="#crearCurso" text="crear curso" />
+      <Button layoutX="500.0" mnemonicParsing="false" onAction="#eliminarCurso" text="eliminar curso" />
    </children>
 </AnchorPane>

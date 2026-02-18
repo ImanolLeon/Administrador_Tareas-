@@ -21,9 +21,7 @@
                    GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
         <!-- cantidad de estudiantes -->
-        <Label text="Cantidad de estudiantes" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-        <TextField fx:id="txtEstudiantesCurso"
-                   GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
 
         <!-- Botón -->
         <Button text="Registrar"
