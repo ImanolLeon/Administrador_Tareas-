@@ -1,6 +1,7 @@
 package com.example.sistemamatricula.Controlador;
 
 import com.example.sistemamatricula.Dao.CursoDao;
+import com.example.sistemamatricula.Escena.MovimientoVentanas;
 import com.example.sistemamatricula.Modelo.Curso;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
@@ -26,6 +27,7 @@ public class EliminacionCursos {
 
 
     private final CursoDao cursoDao= new CursoDao();
+    MovimientoVentanas movimientoVentanas = new MovimientoVentanas();
 
     @FXML
     public void initialize(){
@@ -59,5 +61,9 @@ public class EliminacionCursos {
             System.out.println("No se puedo eliminar");
         }
 
+    }
+
+    public void retroceder(){
+        movimientoVentanas.mover("Principal.fxml","Principal");
     }
 }

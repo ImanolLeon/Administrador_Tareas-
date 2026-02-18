@@ -1,35 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane  xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.sistemamatricula.Controlador.EliminacionCursos"
-            prefHeight="400.0" prefWidth="600.0" >
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistemamatricula.Controlador.EliminacionCursos">
 
     <center>
         <TableView fx:id="tablaCursos">
             <columns>
-                <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
-                <TableColumn fx:id="colNombre" text="Nombre" prefWidth="150"/>
-                <TableColumn fx:id="colCreditos" text="Créditos" prefWidth="80"/>
+                <TableColumn fx:id="colId" prefWidth="60" text="ID" />
+                <TableColumn fx:id="colNombre" prefWidth="150" text="Nombre" />
+                <TableColumn fx:id="colCreditos" prefWidth="80" text="Créditos" />
             </columns>
         </TableView>
     </center>
 
-
-
-
     <bottom>
-        <Button text="Eliminar Curso"
-                onAction="#eliminarCurso"/>
+        <Button onAction="#eliminarCurso" text="Eliminar Curso" />
     </bottom>
+   <top>
+      <Button layoutX="300.0" mnemonicParsing="false" text="Atrás" BorderPane.alignment="CENTER_RIGHT"  onAction="#retroceder"/>
+   </top>
 
 
 
 
-</BorderPane >
+
+
+
+
+
+</BorderPane>
