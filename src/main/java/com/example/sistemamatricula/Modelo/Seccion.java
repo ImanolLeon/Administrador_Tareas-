@@ -8,8 +8,16 @@ public class Seccion {
     private String dia;
     private LocalTime hora_inicio;
     private LocalTime hora_fin;
-    private int cantidad_maxima;
+   private int id_aula;
     private int id_profesor;
+
+    public int getId_aula() {
+        return id_aula;
+    }
+
+    public void setId_aula(int id_aula) {
+        this.id_aula = id_aula;
+    }
 
     public int getId_profesor() {
         return id_profesor;
@@ -19,13 +27,6 @@ public class Seccion {
         this.id_profesor = id_profesor;
     }
 
-    public int getCantidad_maxima() {
-        return cantidad_maxima;
-    }
-
-    public void setCantidad_maxima(int cantidad_maxima) {
-        this.cantidad_maxima = cantidad_maxima;
-    }
 
     public LocalTime getHora_fin() {
         return hora_fin;

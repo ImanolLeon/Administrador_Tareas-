@@ -7,6 +7,11 @@
    <children>
       <Button mnemonicParsing="false" onAction="#crearCurso" text="crear curso" />
       <Button layoutX="500.0" mnemonicParsing="false" onAction="#eliminarCurso" text="eliminar curso" />
-      <Button layoutX="500.0" layoutY="55.0" mnemonicParsing="false" onAction="#irAulas" text="ver aulas" />
+      <Button layoutX="315.0" layoutY="4.0" mnemonicParsing="false" onAction="#irAulas" text="ver aulas" />
+      <Button layoutX="174.0" layoutY="4.0" mnemonicParsing="false" onAction="#irSecciones" text="Crear Seccion" />
+
+
+
+
    </children>
 </AnchorPane>

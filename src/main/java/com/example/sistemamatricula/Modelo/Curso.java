@@ -37,4 +37,9 @@ private  int cantidad_estudiantes;
     public void setCantidad_estudiantes(int cantidad_estudiantes) {
         this.cantidad_estudiantes = cantidad_estudiantes;
     }
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
 }

@@ -28,6 +28,8 @@ public class RegistroDatosEstudiantesController {
 
     MovimientoVentanas movimientoVentanas= new MovimientoVentanas();
 
+
+
     @FXML
     public void registrarEstudiante(){
         String nombre = txtNombres.getText();

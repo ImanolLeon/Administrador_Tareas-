@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistemamatricula.Controlador.SeccionControlador">
+    <children>
+
+        <BorderPane prefHeight="320" prefWidth="500" AnchorPane.bottomAnchor="40" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50" AnchorPane.topAnchor="40">
+
+            <center>
+                <VBox alignment="CENTER" spacing="15">
+                    <padding>
+                        <Insets bottom="20" left="20" right="20" top="20" />
+                    </padding>
+
+                    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Crear Sección" />
+
+                    <ComboBox fx:id="comboCurso" prefWidth="250" promptText="Seleccione Curso" />
+
+                    <ComboBox fx:id="comboAula" prefWidth="250" promptText="Seleccione Aula" />
+
+                    <TextField fx:id="txtDia" prefWidth="250" promptText="Día (Ej: Lunes)" />
+
+                    <TextField fx:id="txtHoraInicio" prefWidth="250" promptText="Hora Inicio (HH:MM)" />
+
+                    <TextField fx:id="txtHoraFin" prefWidth="250" promptText="Hora Fin (HH:MM)" />
+
+                    <Button onAction="#crearSeccion" prefWidth="200" text="Guardar Sección" />
+                    <Button onAction="#retroceder" prefWidth="200" text="Atrás" />
+
+                </VBox>
+            </center>
+
+        </BorderPane>
+
+    </children>
+</AnchorPane>

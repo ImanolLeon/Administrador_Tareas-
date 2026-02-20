@@ -4,71 +4,19 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistemamatricula.Controlador.ProfesorMatriculaControlador">
+<AnchorPane prefHeight="400.0" prefWidth="600.0"  xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistemamatricula.Controlador.ProfesorMatriculaControlador">
     <children>
-        <VBox spacing="15"
-              AnchorPane.topAnchor="15"
-              AnchorPane.leftAnchor="15"
-              AnchorPane.rightAnchor="15"
-              AnchorPane.bottomAnchor="15">
-
-            <!-- TÍTULO -->
-            <Label text="MATRÍCULA DE CURSOS"
-                   style="-fx-font-size: 22px; -fx-font-weight: bold;"
-                   alignment="CENTER"/>
-
-            <!-- DATOS DEL ESTUDIANTE -->
-            <GridPane hgap="10" vgap="10">
-                <columnConstraints>
-                    <ColumnConstraints halignment="RIGHT"/>
-                    <ColumnConstraints hgrow="ALWAYS"/>
-                </columnConstraints>
+        <BorderPane AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
+            <center>
+                <TableView fx:id="tablaAulas">
+                    <columns>
+                        <TableColumn fx:id="colNombre" prefWidth="150" text="Nombre" />
+                        <TableColumn fx:id="colCapacidad" prefWidth="80" text="capacidad" />
+                    </columns>
+                </TableView>
+            </center>
 
 
-            </GridPane>
-
-            <!-- SECCIÓN DE CURSOS -->
-            <HBox spacing="20">
-
-                <!-- CURSOS DISPONIBLES -->
-                <VBox spacing="8" HBox.hgrow="ALWAYS">
-                    <Label text="Cursos disponibles"/>
-                    <TableView fx:id="tblCursosDisponibles">
-                        <columns>
-                            <TableColumn text="Código" prefWidth="80"/>
-                            <TableColumn text="Curso" prefWidth="80"/>
-                            <TableColumn text="Créditos" prefWidth="80"/>
-                            <TableColumn text="vacantes" prefWidth="90" />
-                        </columns>
-                    </TableView>
-                </VBox>
-
-                <!-- BOTONES -->
-                <VBox spacing="15" alignment="CENTER">
-                    <Button text="Agregar ▶" fx:id="btnAgregar"/>
-                    <Button text="◀ Quitar" fx:id="btnQuitar"/>
-                </VBox>
-
-                <!-- CURSOS SELECCIONADOS -->
-                <VBox spacing="8" HBox.hgrow="ALWAYS">
-                    <Label text="Cursos seleccionados"/>
-                    <TableView fx:id="tblCursosSeleccionados">
-                        <columns>
-                            <TableColumn text="Código" prefWidth="80"/>
-                            <TableColumn text="Curso" prefWidth="200"/>
-                            <TableColumn text="Créditos" prefWidth="80"/>
-                        </columns>
-                    </TableView>
-                </VBox>
-
-            </HBox>
-
-            <!-- ACCIONES -->
-            <HBox spacing="15" alignment="CENTER_RIGHT">
-                <Button text="Matricular" fx:id="btnMatricular"/>
-                <Button text="Cancelar"/>
-            </HBox>
-
-        </VBox>
+        </BorderPane>
     </children>
 </AnchorPane>

@@ -15,7 +15,12 @@ public class PrincipalControlador {
     public void crearCurso(){
         movimientoVentanas.mover("Curso/CreacionCurso.fxml","Creación Curso");
     }
+
     public void irAulas(){
-        movimientoVentanas.mover("");
+        movimientoVentanas.mover("Aula/Aula.fxml","Aulas");
+    }
+
+    public void irSecciones(){
+        movimientoVentanas.mover("Seccion/Seccion.fxml","Seccion");
     }
 }

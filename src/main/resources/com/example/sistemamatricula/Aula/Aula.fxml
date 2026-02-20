@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.sistemamatricula.Controlador.AulaController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistemamatricula.Controlador.AulaController">
+   <children>
+       <BorderPane AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
+           <center>
+               <TableView fx:id="tablaAulas">
+                   <columns>
+                       <TableColumn fx:id="colNombre" prefWidth="150" text="Nombre" />
+                       <TableColumn fx:id="colCapacidad" prefWidth="80" text="capacidad" />
+                   </columns>
+               </TableView>
+           </center>
 
+
+       </BorderPane>
+      <Button mnemonicParsing="false" text="crear aula" onAction="#agregarTarea"/>
+      <Button layoutX="198.0" layoutY="10.0"  text="Eliminar aula" onAction="#eliminarTarea"/>
+       <Button layoutX="300.0" layoutY="10.0"  text="Atrás" onAction="#retroceder"/>
+   </children>
 </AnchorPane>
