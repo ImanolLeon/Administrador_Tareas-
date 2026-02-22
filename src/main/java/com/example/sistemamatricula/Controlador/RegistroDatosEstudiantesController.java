@@ -19,6 +19,8 @@ public class RegistroDatosEstudiantesController {
     @FXML
     private DatePicker dpFechaNacimiento;
 
+
+
     //Obtener id_usuario
     private int id_usuario;
     public void setId_usuario(int id_usuario){

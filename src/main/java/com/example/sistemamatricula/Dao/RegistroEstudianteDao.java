@@ -9,7 +9,6 @@ import java.time.LocalDate;
 
 public class RegistroEstudianteDao {
 
-
     public boolean ingresarDatosEstudiante(String nombre, String apellido, String telefono, LocalDate fecha_nacimiento,int id_usuario){
         String consultasql = """
             INSERT INTO estudiante (nombres, apellidos, telefono,fecha_nacimiento,id_usuario)

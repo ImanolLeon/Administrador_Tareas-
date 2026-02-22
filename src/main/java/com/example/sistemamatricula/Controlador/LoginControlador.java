@@ -1,8 +1,11 @@
 package com.example.sistemamatricula.Controlador;
 
+import com.example.sistemamatricula.Dao.ProfesorDao;
 import com.example.sistemamatricula.Dao.UsuarioDao;
 import com.example.sistemamatricula.Escena.MovimientoVentanas;
+import com.example.sistemamatricula.Modelo.Profesor;
 import com.example.sistemamatricula.Modelo.Usuario;
+import com.example.sistemamatricula.Sesion.SesionProfesor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +24,7 @@ public class LoginControlador {
 
     @FXML
     private PasswordField txtPassword;
+    ProfesorDao profesorDao = new ProfesorDao();
 
     @FXML
     public void ingresar(){
@@ -52,9 +56,18 @@ public class LoginControlador {
                 case 2 : ventanas.mover("Matricula/EstudianteMatricula.fxml","Matricula estudiante");
                     break;
 
-                case 3 : ventanas.mover("Matricula/ProfesorMatricula.fxml","Matricula profesor");
-                    break;
- 
+                case 3 :
+                    Profesor profesor = profesorDao.buscarPorUsuario(usuario.getIdUsuario());
+
+                    if(profesor!= null){
+                        //Obtenemos el valor del id_profesor
+                        SesionProfesor.getInstancia().setIdProfesor(profesor.getId_profesor());
+                        SesionProfesor.getInstancia().setNombreProfesor(profesor.getNombres());
+                        ventanas.mover("Matricula/ProfesorMatricula.fxml","Matricula profesor");
+
+                    }else{
+                        System.out.println("El usuario no está registrado como profesor");
+                    }break;
                 default:
                     System.out.println("Rol desconocido");
             }

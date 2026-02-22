@@ -3,7 +3,11 @@ package com.example.sistemamatricula.Controlador;
 import com.example.sistemamatricula.Escena.MovimientoVentanas;
 import com.example.sistemamatricula.Services.RegistroProfesorServices;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class RegistroProfesorControlador {
     RegistroProfesorServices registroProfesorServices= new RegistroProfesorServices();
@@ -38,14 +42,16 @@ public class RegistroProfesorControlador {
         String especialidad= txtEspecialdad.getText();
         String gmail = txtGmail.getText();
 
+
         try {
-            registroProfesorServices.registrarProfesor(nombre,apellido,especialidad,gmail,telefono,id_usuario);
+            int id_profesor= registroProfesorServices.registrarProfesor(nombre,apellido,especialidad,gmail,telefono,id_usuario);
             System.out.println("Se registró al profesor"+ nombre);
-            movimientoVentanas.mover("Matricula/ProfesorMatricula.fxml","Panel profesor");
-        }catch (Exception e){
+
+           movimientoVentanas.mover("Matricula/ProfesorMatricula.fxml","Profesor");
+
+            }catch (Exception e){
             throw new RuntimeException(e);
         }
-
 
 
     }

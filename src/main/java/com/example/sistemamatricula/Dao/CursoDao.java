@@ -38,7 +38,6 @@ public class CursoDao {
                 SELECT id_curso
                 FROM curso
                 WHERE nombre = ?;
-                
                 """;
 
         try (Connection connection = ConexionBd.getConexion();

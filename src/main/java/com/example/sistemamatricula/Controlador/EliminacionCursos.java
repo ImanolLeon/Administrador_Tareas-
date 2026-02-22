@@ -16,7 +16,6 @@ public class EliminacionCursos {
     //nombre de la tabla
     @FXML
     private TableView<Curso> tablaCursos;
-
     //Columna de las tablas con <Clase,TipoDato>
     @FXML
     private TableColumn<Curso,Integer> colId;

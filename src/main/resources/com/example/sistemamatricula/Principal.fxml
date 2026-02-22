@@ -9,6 +9,7 @@
       <Button layoutX="500.0" mnemonicParsing="false" onAction="#eliminarCurso" text="eliminar curso" />
       <Button layoutX="315.0" layoutY="4.0" mnemonicParsing="false" onAction="#irAulas" text="ver aulas" />
       <Button layoutX="174.0" layoutY="4.0" mnemonicParsing="false" onAction="#irSecciones" text="Crear Seccion" />
+      <Button layoutX="174.0" layoutY="50.0" mnemonicParsing="false" onAction="#verSecciones" text="ver Secciones" />
 
 
 

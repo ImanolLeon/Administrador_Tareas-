@@ -11,6 +11,8 @@ public class Seccion {
    private int id_aula;
     private int id_profesor;
 
+
+
     public int getId_aula() {
         return id_aula;
     }
