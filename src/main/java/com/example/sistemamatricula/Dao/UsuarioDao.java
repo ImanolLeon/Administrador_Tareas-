@@ -1,5 +1,6 @@
 package com.example.sistemamatricula.Dao;
 
+import com.example.sistemamatricula.Modelo.AlumnoDTO;
 import com.example.sistemamatricula.Modelo.Usuario;
 import com.example.sistemamatricula.Util.ConexionBd;
 
@@ -7,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioDao {
@@ -52,7 +54,36 @@ public class UsuarioDao {
 
 
 
-    public List<Usuario> mostrarUsuariosEstado (){
+    public List<AlumnoDTO>  mostrarUsuariosEstado (){
+        List<AlumnoDTO> alumnos = new ArrayList<>();
+        String consultaSql = """
+                select usuario.id_usuario ,
+                estudiante.nombres as nombre ,
+                estudiante.apellidos as apellido,
+                estado.nombre as estado
+                from usuario
+                inner join estudiante
+                on usuario.id_usuario = estudiante.id_usuario
+                inner join estado
+                on usuario.id_estado = estado.id_estado
+                """;
+        try (Connection connection = ConexionBd.getConexion();
+              PreparedStatement preparedStatement = connection.prepareStatement(consultaSql);
+              ResultSet rs = preparedStatement.executeQuery()){
+                while (rs.next()){
+                    AlumnoDTO alumnoDTO = new AlumnoDTO(
+                            rs.getInt("id_usuario"),
+                            rs.getString("nombre"),
+                            rs.getString("apellido"),
+                            rs.getString("estado")
+                    ) ;
+                    alumnos.add(alumnoDTO);
+                }
+
+                return  alumnos;
+        }catch (Exception e){
+            throw  new RuntimeException(e);
+        }
 
     }
 }
