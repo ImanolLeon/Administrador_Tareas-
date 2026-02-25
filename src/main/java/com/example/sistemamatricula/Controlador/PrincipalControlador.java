@@ -27,4 +27,8 @@ public class PrincipalControlador {
     public void verSecciones(){
         movimientoVentanas.mover("Seccion/Secciones.fxml","Secciones");
     }
+
+    public void verEstudiante(){
+        movimientoVentanas.mover("Estado/EstudianteEstado.fxml","Estudiantes");
+    }
 }

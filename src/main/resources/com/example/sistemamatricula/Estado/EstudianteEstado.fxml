@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistemamatricula.Controlador.EstudiantesEstadoControlador">
+   <children>
+       <BorderPane AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="40.0">
+           <center>
+               <TableView fx:id="tablaEstudiante">
+                   <columns>
+                       <TableColumn fx:id="colIdUsuario" prefWidth="80" text="id_usuario" />
+                       <TableColumn fx:id="colNombre" prefWidth="80" text="nombre" />
+                       <TableColumn fx:id="colApellido" prefWidth="80" text="apellido" />
+                       <TableColumn fx:id="colEstado" prefWidth="80" text="estado" />
+                   </columns>
+               </TableView>
+           </center>
+
+
+
+       </BorderPane>
+      <Button mnemonicParsing="false" text="Bloquear" />
+       <Button layoutX="109.0" mnemonicParsing="false" text="Suspender" />
+
+   </children>
+</AnchorPane>
