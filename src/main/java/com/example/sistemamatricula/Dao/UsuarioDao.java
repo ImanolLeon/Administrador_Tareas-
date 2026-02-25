@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class UsuarioDao {
     public Usuario login(String dni, String contrasena) {
@@ -47,6 +48,12 @@ public class UsuarioDao {
         }
 
         return null;
+    }
+
+
+
+    public List<Usuario> mostrarUsuariosEstado (){
+
     }
 }
 
