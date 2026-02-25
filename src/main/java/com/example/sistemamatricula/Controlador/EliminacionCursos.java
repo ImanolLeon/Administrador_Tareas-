@@ -24,7 +24,6 @@ public class EliminacionCursos {
     @FXML
     private TableColumn<Curso,Integer> colCreditos;
 
-
     private final CursoDao cursoDao= new CursoDao();
     MovimientoVentanas movimientoVentanas = new MovimientoVentanas();
 

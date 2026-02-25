@@ -36,7 +36,6 @@ public class SeccionControlador {
     MovimientoVentanas movimientoVentanas = new MovimientoVentanas();
 
 
-
     @FXML
     public void initialize() {
         cargarCursos();

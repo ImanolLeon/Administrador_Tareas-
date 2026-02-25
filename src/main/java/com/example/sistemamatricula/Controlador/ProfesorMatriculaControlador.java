@@ -51,6 +51,7 @@ public class ProfesorMatriculaControlador {
 
         cargarSecciones();
 
+
     }
     private void cargarSecciones() {
         ObservableList<SeccionDTO> lista =

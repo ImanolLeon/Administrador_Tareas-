@@ -15,13 +15,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
-
 public class LoginControlador {
     MovimientoVentanas ventanas= new MovimientoVentanas();
 
     @FXML
     private TextField dni;
-
     @FXML
     private PasswordField txtPassword;
     ProfesorDao profesorDao = new ProfesorDao();
@@ -48,8 +46,6 @@ public class LoginControlador {
         Usuario usuario= dao.login(username,password);
 
         if(usuario != null){
-
-
             switch (usuario.getRol()){
                 case 1 : ventanas.mover("Principal.fxml","PanelAdmin");
                     break;
