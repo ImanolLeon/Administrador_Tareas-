@@ -12,7 +12,7 @@
                        <TableColumn fx:id="colIdUsuario" prefWidth="80" text="id_usuario" />
                        <TableColumn fx:id="colNombre" prefWidth="80" text="nombre" />
                        <TableColumn fx:id="colApellido" prefWidth="80" text="apellido" />
-                       <TableColumn fx:id="colEstado" prefWidth="80" text="estado" />
+                       <TableColumn fx:id="colEstado" prefWidth="130" text="estado" />
                    </columns>
                </TableView>
            </center>
@@ -20,8 +20,8 @@
 
 
        </BorderPane>
-      <Button mnemonicParsing="false" text="Bloquear" />
-       <Button layoutX="109.0" mnemonicParsing="false" text="Suspender" />
-
+      <Button mnemonicParsing="false" text="Bloquear" onAction="#bloquearUsuario" />
+       <Button layoutX="109.0" mnemonicParsing="false" onAction="#suspenderUsuario" text="Suspender" />
+       <Button layoutX="193.0" mnemonicParsing="false" onAction="#activarUsuario" text="Activar" />
    </children>
 </AnchorPane>

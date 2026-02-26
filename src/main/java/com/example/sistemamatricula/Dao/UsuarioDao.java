@@ -86,5 +86,60 @@ public class UsuarioDao {
         }
 
     }
+
+    public boolean suspenderUsuario(int id_usuario){
+        String consulta = """
+                update usuario set id_estado= 3 where id_usuario= ?
+                """;
+        try (Connection connection = ConexionBd.getConexion();
+             PreparedStatement preparedStatement = connection.prepareStatement(consulta) ){
+
+            preparedStatement.setInt(1,id_usuario);
+            int filas = preparedStatement.executeUpdate();
+            return filas>0;
+        }catch (Exception e){
+            throw  new RuntimeException(e);
+        }
+    }
+    public boolean activarUsuario(int id_usuario){
+        String consulta = """
+                update usuario set id_estado= 1 where id_usuario= ?
+                """;
+        try (Connection connection = ConexionBd.getConexion();
+             PreparedStatement preparedStatement = connection.prepareStatement(consulta) ){
+
+            preparedStatement.setInt(1,id_usuario);
+            int filas = preparedStatement.executeUpdate();
+            return filas>0;
+        }catch (Exception e){
+            throw  new RuntimeException(e);
+        }
+    }
+    public boolean bloquearUsuario(int id_usuario){
+        String consulta = """
+                update usuario set id_estado= 2 where id_usuario= ?
+                """;
+        try (Connection connection = ConexionBd.getConexion();
+             PreparedStatement preparedStatement = connection.prepareStatement(consulta) ){
+
+            preparedStatement.setInt(1,id_usuario);
+            int filas = preparedStatement.executeUpdate();
+            return filas>0;
+        }catch (Exception e){
+            throw  new RuntimeException(e);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }
 

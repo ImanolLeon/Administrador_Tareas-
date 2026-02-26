@@ -1,10 +1,13 @@
 package com.example.sistemamatricula.Controlador;
 
+import com.example.sistemamatricula.Dao.EstudianteDao;
 import com.example.sistemamatricula.Dao.ProfesorDao;
 import com.example.sistemamatricula.Dao.UsuarioDao;
 import com.example.sistemamatricula.Escena.MovimientoVentanas;
+import com.example.sistemamatricula.Modelo.Estudiante;
 import com.example.sistemamatricula.Modelo.Profesor;
 import com.example.sistemamatricula.Modelo.Usuario;
+import com.example.sistemamatricula.Sesion.SesionAlumno;
 import com.example.sistemamatricula.Sesion.SesionProfesor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +26,7 @@ public class LoginControlador {
     @FXML
     private PasswordField txtPassword;
     ProfesorDao profesorDao = new ProfesorDao();
+    EstudianteDao estudianteDao = new EstudianteDao();
 
     @FXML
     public void ingresar(){
@@ -49,7 +53,16 @@ public class LoginControlador {
             switch (usuario.getRol()){
                 case 1 : ventanas.mover("Principal.fxml","PanelAdmin");
                     break;
-                case 2 : ventanas.mover("Matricula/EstudianteMatricula.fxml","Matricula estudiante");
+                case 2 :
+                    Estudiante estudiante = estudianteDao.buscarEstudiante(usuario.getIdUsuario());
+
+                    if(estudiante != null) {
+                        SesionAlumno.getInstance().setId_alumno(estudiante.getId_estudiante());
+                        SesionAlumno.getInstancia().setNombre_alumno(estudiante.getNombres());
+                        ventanas.mover("Matricula/EstudianteMatricula.fxml", "Matricula estudiante");
+                    }else{
+                        System.out.println("No está registrado como alumno");
+                    }
                     break;
 
                 case 3 :

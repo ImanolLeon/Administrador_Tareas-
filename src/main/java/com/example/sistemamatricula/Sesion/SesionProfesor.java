@@ -1,7 +1,5 @@
 package com.example.sistemamatricula.Sesion;
 
-
-
 public class SesionProfesor {
     private static SesionProfesor instancia;
     private int idProfesor;
