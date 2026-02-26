@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 
 public class MatriculaDao {
 
-
     public int matricular(Matricula matricula){
         String sql = "INSERT INTO matricula (fecha, id_estudiante) VALUES (?, ?)";
         try(Connection  connection= ConexionBd.getConexion();

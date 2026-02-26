@@ -12,6 +12,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SeccionDao {
+
+
+    public List<SeccionDTO> listaSeccines (){
+        List<SeccionDTO> secciones = new ArrayList<>();
+        String sql = """
+                select seccion.id_seccion as seccion,
+                seccion.dia as dia ,seccion.hora_inicio ,seccion.hora_fin,
+                curso.nombre as curso,profesor.nombres as profesor ,aula.nombre as aula
+                from seccion
+                inner join curso 	
+                	on seccion.id_curso=curso.id_curso
+                inner join aula
+                	on seccion.id_aula= aula.id_aula
+                inner join profesor
+                	on seccion.id_profesor = profesor.id_profesor
+                """;
+
+
+    }
+
+
     public  boolean eliminarSeccion(int seccion_id){
         String sql = "delete from seccion where id_seccion=?";
         try (Connection connection= ConexionBd.getConexion();
