@@ -53,82 +53,66 @@ public class UsuarioDao {
     }
 
 
+    public List<AlumnoDTO> mostrarUsuariosEstado() {
 
-    public List<AlumnoDTO>  mostrarUsuariosEstado (){
         List<AlumnoDTO> alumnos = new ArrayList<>();
+
         String consultaSql = """
-                select usuario.id_usuario ,
-                estudiante.nombres as nombre ,
-                estudiante.apellidos as apellido,
-                estado.nombre as estado
-                from usuario
-                inner join estudiante
+            select usuario.id_usuario,
+                   usuario.id_estado,
+                   estudiante.nombres as nombre,
+                   estudiante.apellidos as apellido,
+                   estado.nombre as estado
+            from usuario
+            inner join estudiante
                 on usuario.id_usuario = estudiante.id_usuario
-                inner join estado
+            inner join estado
                 on usuario.id_estado = estado.id_estado
-                """;
+            """;
+
         try (Connection connection = ConexionBd.getConexion();
-              PreparedStatement preparedStatement = connection.prepareStatement(consultaSql);
-              ResultSet rs = preparedStatement.executeQuery()){
-                while (rs.next()){
-                    AlumnoDTO alumnoDTO = new AlumnoDTO(
-                            rs.getInt("id_usuario"),
-                            rs.getString("nombre"),
-                            rs.getString("apellido"),
-                            rs.getString("estado")
-                    ) ;
-                    alumnos.add(alumnoDTO);
-                }
+             PreparedStatement preparedStatement = connection.prepareStatement(consultaSql);
+             ResultSet rs = preparedStatement.executeQuery()) {
 
-                return  alumnos;
-        }catch (Exception e){
-            throw  new RuntimeException(e);
-        }
+            while (rs.next()) {
 
-    }
+                AlumnoDTO alumnoDTO = new AlumnoDTO(
+                        rs.getInt("id_usuario"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("estado"),
+                        rs.getInt("id_estado")   // 🔥 aquí está la clave
+                );
 
-    public boolean suspenderUsuario(int id_usuario){
-        String consulta = """
-                update usuario set id_estado= 3 where id_usuario= ?
-                """;
-        try (Connection connection = ConexionBd.getConexion();
-             PreparedStatement preparedStatement = connection.prepareStatement(consulta) ){
+                alumnos.add(alumnoDTO);
+            }
 
-            preparedStatement.setInt(1,id_usuario);
-            int filas = preparedStatement.executeUpdate();
-            return filas>0;
-        }catch (Exception e){
-            throw  new RuntimeException(e);
+            return alumnos;
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
-    public boolean activarUsuario(int id_usuario){
-        String consulta = """
-                update usuario set id_estado= 1 where id_usuario= ?
-                """;
-        try (Connection connection = ConexionBd.getConexion();
-             PreparedStatement preparedStatement = connection.prepareStatement(consulta) ){
 
-            preparedStatement.setInt(1,id_usuario);
-            int filas = preparedStatement.executeUpdate();
-            return filas>0;
-        }catch (Exception e){
-            throw  new RuntimeException(e);
+    public boolean actualizarEstado(int idUsuario, int idEstado) {
+
+        String sql = "update usuario set id_estado=? where id_usuario=?";
+
+        try (Connection connection = ConexionBd.getConexion();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, idEstado);
+            ps.setInt(2, idUsuario);
+
+            return ps.executeUpdate() > 0;
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
-    public boolean bloquearUsuario(int id_usuario){
-        String consulta = """
-                update usuario set id_estado= 2 where id_usuario= ?
-                """;
-        try (Connection connection = ConexionBd.getConexion();
-             PreparedStatement preparedStatement = connection.prepareStatement(consulta) ){
 
-            preparedStatement.setInt(1,id_usuario);
-            int filas = preparedStatement.executeUpdate();
-            return filas>0;
-        }catch (Exception e){
-            throw  new RuntimeException(e);
-        }
-    }
+
+
 
 
 

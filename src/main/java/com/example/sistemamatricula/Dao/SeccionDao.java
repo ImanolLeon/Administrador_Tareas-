@@ -14,24 +14,6 @@ import java.util.List;
 public class SeccionDao {
 
 
-    public List<SeccionDTO> listaSeccines (){
-        List<SeccionDTO> secciones = new ArrayList<>();
-        String sql = """
-                select seccion.id_seccion as seccion,
-                seccion.dia as dia ,seccion.hora_inicio ,seccion.hora_fin,
-                curso.nombre as curso,profesor.nombres as profesor ,aula.nombre as aula
-                from seccion
-                inner join curso 	
-                	on seccion.id_curso=curso.id_curso
-                inner join aula
-                	on seccion.id_aula= aula.id_aula
-                inner join profesor
-                	on seccion.id_profesor = profesor.id_profesor
-                """;
-
-
-    }
-
 
     public  boolean eliminarSeccion(int seccion_id){
         String sql = "delete from seccion where id_seccion=?";
@@ -98,8 +80,58 @@ public class SeccionDao {
         return false;
     }
 
+    public List<SeccionDTO> listarSeccionesEstudiantes(int idEstudiante){
 
+        List<SeccionDTO> secciones = new ArrayList<>();
 
+        String sql = """
+        SELECT s.id_seccion AS seccion,
+        s.dia,
+        s.hora_inicio,
+        s.hora_fin,
+        c.nombre AS curso,
+        p.nombres AS profesor,
+        a.nombre AS aula
+        FROM seccion s
+        INNER JOIN curso c ON s.id_curso = c.id_curso
+        INNER JOIN aula a ON s.id_aula = a.id_aula
+        INNER JOIN profesor p ON s.id_profesor = p.id_profesor
+        WHERE NOT EXISTS (
+            SELECT 1
+            FROM matricula m
+            WHERE m.id_estudiante = ?
+            AND m.id_seccion = s.id_seccion
+        )
+    """;
+
+        try (Connection connection = ConexionBd.getConexion();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+
+            preparedStatement.setInt(1,idEstudiante);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+
+                SeccionDTO seccion = new SeccionDTO(
+                        rs.getInt("seccion"),
+                        rs.getString("curso"),
+                        rs.getString("dia"),
+                        rs.getTime("hora_inicio"),
+                        rs.getTime("hora_fin"),
+                        rs.getString("aula"),
+                        rs.getString("profesor")
+                );
+
+                secciones.add(seccion);
+            }
+
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+
+        return secciones;
+    }
     public List<SeccionDTO> listarSecciones(){
         List<SeccionDTO> secciones = new ArrayList<>();
         String sql = """ 

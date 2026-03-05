@@ -6,7 +6,15 @@ public class Matricula {
     private int id_matricula;
     private LocalDate fecha;
     private int id_estudiante;
+    private int id_seccion;
 
+    public int getId_seccion() {
+        return id_seccion;
+    }
+
+    public void setId_seccion(int id_seccion) {
+        this.id_seccion = id_seccion;
+    }
 
     public int getId_matricula() {
         return id_matricula;

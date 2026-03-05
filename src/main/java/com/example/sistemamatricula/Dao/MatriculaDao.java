@@ -7,18 +7,20 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 
 public class MatriculaDao {
 
-    public int matricular(Matricula matricula){
-        String sql = "INSERT INTO matricula (fecha, id_estudiante) VALUES (?, ?)";
+    public int matricular(LocalDate fecha,int id_estudiante,int seccion){
+        String sql = "INSERT INTO matricula (fecha, id_estudiante,id_seccion) VALUES (?, ?,?)";
         try(Connection  connection= ConexionBd.getConexion();
             PreparedStatement ps = connection.prepareStatement(sql)){
 
-            ps.setDate(1, Date.valueOf(matricula.getFecha()));
-            ps.setInt(2, matricula.getId_estudiante());
+            ps.setDate(1, Date.valueOf(fecha));
+            ps.setInt(2, id_estudiante);
+            ps.setInt(3,seccion);
 
-
+            return ps.executeUpdate();
         }catch (Exception e){
             System.out.println(e);
         }
@@ -26,4 +28,109 @@ public class MatriculaDao {
         return -1;
     }
 
+
+    public int contarCursosEstudiante(int idEstudiante) {
+        int cantidad = 0;
+        String sql = "SELECT COUNT(*) FROM matricula WHERE id_estudiante = ?";
+
+        try {
+            Connection con = ConexionBd.getConexion();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idEstudiante);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                cantidad = rs.getInt(1);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return cantidad;
+    }
+
+    public boolean yaTieneCurso(int idEstudiante, int idCurso) {
+
+        String sql = """
+        SELECT 1
+        FROM matricula m
+        JOIN seccion s ON m.id_seccion = s.id_seccion
+        WHERE m.id_estudiante = ?
+        AND s.id_curso = ?
+    """;
+
+        try {
+            Connection con = ConexionBd.getConexion();
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, idEstudiante);
+            ps.setInt(2, idCurso);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return true;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+    public boolean hayCapacidad(int idSeccion) {
+
+        String sql = """
+        SELECT a.capacidad, COUNT(m.id_estudiante) AS inscritos
+        FROM seccion s
+        JOIN aula a ON s.id_aula = a.id_aula
+        LEFT JOIN matricula m ON m.id_seccion = s.id_seccion
+        WHERE s.id_seccion = ?
+        GROUP BY a.capacidad
+    """;
+
+        try {
+            Connection con = ConexionBd.getConexion();
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, idSeccion);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                int capacidad = rs.getInt("capacidad");
+                int inscritos = rs.getInt("inscritos");
+
+                return inscritos < capacidad;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+    public int obtenerCursoDeSeccion(int idSeccion) {
+
+        String sql = "SELECT id_curso FROM seccion WHERE id_seccion = ?";
+
+        try (Connection con = ConexionBd.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, idSeccion);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("id_curso");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return -1;
+    }
 }

@@ -1,18 +1,24 @@
 package com.example.sistemamatricula.Modelo;
 
 public class AlumnoDTO {
-private int id_alumno;
-private String nombre;
-private String apellido;
-private String nombreEstado;
+    private int id_alumno;
+    private String nombre;
+    private String apellido;
+    private String nombreEstado;
+    private int idEstado; //  importante
 
-    public AlumnoDTO(int id_alumno, String nombre, String apellido, String nombreEstado) {
+    public AlumnoDTO(int id_alumno, String nombre, String apellido,
+                     String nombreEstado, int idEstado) {
         this.id_alumno = id_alumno;
         this.nombre = nombre;
         this.apellido = apellido;
         this.nombreEstado = nombreEstado;
+        this.idEstado = idEstado;
     }
 
+    public int getIdEstado() {
+        return idEstado;
+    }
     public int getId_alumno() {
         return id_alumno;
     }

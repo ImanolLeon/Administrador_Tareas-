@@ -44,14 +44,108 @@ public class EstudiantesEstadoControlador {
         tablaEstudiante.setItems(lista);
     }
 
-    public void suspenderUsuario(){
+
+    public void activarUsuario() {
+
         AlumnoDTO seleccionado = tablaEstudiante.getSelectionModel().getSelectedItem();
+
         if (seleccionado == null) {
             alertaFX.mostrarAlerta("Error","Seleccione una sección");
             return;
         }
 
-        boolean exito = usuarioDao.suspenderUsuario(seleccionado.getId_alumno());
+        // 1️⃣ Crear Usuario real
+        Usuario usuario = new Usuario(
+                seleccionado.getId_alumno(),
+                null,
+                0,
+                seleccionado.getIdEstado(),
+                null
+        );
+
+        // 2️⃣ Aplicar patrón State
+        usuario.activar();
+
+        // 3️⃣ Guardar nuevo estado en BD
+        boolean exito = usuarioDao.actualizarEstado(
+                usuario.getIdUsuario(),
+                usuario.getIdEstado()
+        );
+
+        if (exito) {
+            alertaFX.mostrarAlerta("Bien","Activado correctamente");
+            cargarListaAlumnos();
+        } else {
+            alertaFX.mostrarAlerta("Error","No se pudo activar");
+        }
+    }
+
+    public void bloquearUsuario() {
+
+        AlumnoDTO seleccionado = tablaEstudiante.getSelectionModel().getSelectedItem();
+
+        if (seleccionado == null) {
+            alertaFX.mostrarAlerta("Error","Seleccione una sección");
+            return;
+        }
+
+        // 1️⃣ Crear Usuario real con su estado actual
+        Usuario usuario = new Usuario(
+                seleccionado.getId_alumno(),
+                null,
+                0,
+                seleccionado.getIdEstado(),
+                null
+        );
+
+        // 2️⃣ Aplicar patrón State
+        usuario.bloquear();
+
+        // 3️⃣ Guardar nuevo estado en BD
+        boolean exito = usuarioDao.actualizarEstado(
+                usuario.getIdUsuario(),
+                usuario.getIdEstado()
+        );
+
+        if (exito) {
+            alertaFX.mostrarAlerta("Bien","Bloqueado correctamente");
+            cargarListaAlumnos();
+        } else {
+            alertaFX.mostrarAlerta("Error","No se pudo bloquear");
+        }
+    }
+    public void suspenderUsuario(){
+
+        AlumnoDTO seleccionado = tablaEstudiante.getSelectionModel().getSelectedItem();
+
+        if (seleccionado == null) {
+            alertaFX.mostrarAlerta("Error","Seleccione una sección");
+            return;
+        }
+
+        // rear objeto Usuario real
+        Usuario usuario = new Usuario(
+                seleccionado.getId_alumno(),
+                null, // si no usas dni aquí
+                0,    // si no usas rol aquí
+                seleccionado.getIdEstado(),
+                null  // si no usas correo aquí
+        );
+
+
+
+        //  Aplicar patrón State
+        usuario.suspender();
+        if (usuario.getIdEstado()==2){
+            alertaFX.mostrarAlerta("Error","No se puede cambiar de bloqueado a suspendido");
+            return;
+        }
+
+        // Guardar nuevo estado
+        boolean exito = usuarioDao.actualizarEstado(
+                usuario.getIdUsuario(),
+                usuario.getIdEstado()
+        );
 
         if (exito) {
             alertaFX.mostrarAlerta("Bien","Cambiado a suspendido");
@@ -59,42 +153,8 @@ public class EstudiantesEstadoControlador {
         } else {
             alertaFX.mostrarAlerta("Error","orden sin exito");
         }
-
     }
-
-    public void bloquearUsuario(){
-        AlumnoDTO seleccionado = tablaEstudiante.getSelectionModel().getSelectedItem();
-        if (seleccionado == null) {
-            alertaFX.mostrarAlerta("Error","Seleccione una sección");
-            return;
-        }
-
-        boolean exito = usuarioDao.bloquearUsuario(seleccionado.getId_alumno());
-
-        if (exito) {
-            alertaFX.mostrarAlerta("Bien","bloqueado");
-            cargarListaAlumnos();
-        } else {
-            alertaFX.mostrarAlerta("Error","orden sin exito");
-        }
-    }
-    public void activarUsuario(){
-        AlumnoDTO seleccionado = tablaEstudiante.getSelectionModel().getSelectedItem();
-        if (seleccionado == null) {
-            alertaFX.mostrarAlerta("Error","Seleccione una sección");
-            return;
-        }
-
-        boolean exito = usuarioDao.activarUsuario(seleccionado.getId_alumno());
-
-        if (exito) {
-            alertaFX.mostrarAlerta("Bien","Cambiado a activado");
-            cargarListaAlumnos();
-        } else {
-            alertaFX.mostrarAlerta("Error","orden sin exito");
-        }
-    }
-
-
-
 }
+
+
+

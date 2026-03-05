@@ -10,28 +10,36 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class MatriculaService {
-    private MatriculaDao  matriculaDao;
+    private MatriculaDao  matriculaDao= new MatriculaDao();
     private  DetalleMatriculaDao detalleDao;
 
-    public void matricular(int idEstudiante, List<Integer> cursos){
+    public String matricularEstudiante(int idEstudiante, int idSeccion) {
 
-        Matricula matricula = new Matricula();
-        matricula.setFecha(LocalDate.now());
-        matricula.setId_estudiante(idEstudiante);
+        int cursos = matriculaDao.contarCursosEstudiante(idEstudiante);
 
-        int idMatricula=matriculaDao.matricular(matricula);
-        if (idMatricula <= 0) {
-            throw new RuntimeException("No se pudo registrar la matrícula");
-        }else{
-            for(int id_Curso : cursos){
-                DetalleMatricula d = new DetalleMatricula();
-                d.setId_matricula(idMatricula);
-                d.setId_curso(id_Curso);
-                detalleDao.registrarDetalleMatricula(d);
-            }
+        if (cursos >= 7) {
+            return "El estudiante ya tiene 7 cursos";
         }
 
+        int idCurso = matriculaDao.obtenerCursoDeSeccion(idSeccion);
 
+        if (matriculaDao.yaTieneCurso(idEstudiante, idCurso)) {
+            return "El estudiante ya está matriculado en este curso";
 
+        }
+
+        if (!matriculaDao.hayCapacidad(idSeccion)) {
+            return "El aula está llena";
+        }
+
+        int r = matriculaDao.matricular(LocalDate.now(), idEstudiante, idSeccion);
+
+        if (r > 0) {
+            return "Matricula realizada correctamente";
+        }
+
+        return "Error al matricular";
     }
+
+
 }
