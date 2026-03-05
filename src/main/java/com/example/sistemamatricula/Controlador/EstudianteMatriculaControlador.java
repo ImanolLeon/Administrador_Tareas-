@@ -2,6 +2,7 @@ package com.example.sistemamatricula.Controlador;
 
 import com.example.sistemamatricula.Alerta.AlertaFX;
 import com.example.sistemamatricula.Dao.SeccionDao;
+import com.example.sistemamatricula.Escena.MovimientoVentanas;
 import com.example.sistemamatricula.Modelo.SeccionDTO;
 import com.example.sistemamatricula.Services.MatriculaService;
 import com.example.sistemamatricula.Sesion.SesionAlumno;
@@ -35,7 +36,7 @@ public class EstudianteMatriculaControlador {
     private TableColumn<SeccionDTO,String> colProfesor;
     private SeccionDao seccionDAO = new SeccionDao();
     MatriculaService matriculaService = new MatriculaService();
-
+    MovimientoVentanas movimientoVentanas = new MovimientoVentanas();
     AlertaFX alertaFX= new AlertaFX();
     int idEstudiante = SesionAlumno.getInstance().getId_alumno();
     @FXML
@@ -79,6 +80,6 @@ public class EstudianteMatriculaControlador {
 
     }
     public void verCursosMatriculados(){
-
+    movimientoVentanas.mover("Matricula/cursosMatriculados.fxml","Cursos matriculados");
     }
 }
