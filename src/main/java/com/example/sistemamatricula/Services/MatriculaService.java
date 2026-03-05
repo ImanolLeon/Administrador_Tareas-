@@ -11,7 +11,7 @@ import java.util.List;
 
 public class MatriculaService {
     private MatriculaDao  matriculaDao= new MatriculaDao();
-    private  DetalleMatriculaDao detalleDao;
+    private  DetalleMatriculaDao detalleDao = new DetalleMatriculaDao();
 
     public String matricularEstudiante(int idEstudiante, int idSeccion) {
 

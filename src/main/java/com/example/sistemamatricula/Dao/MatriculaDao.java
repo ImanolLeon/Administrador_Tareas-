@@ -1,5 +1,6 @@
 package com.example.sistemamatricula.Dao;
 
+import com.example.sistemamatricula.Modelo.CursosMatriculadosDTO;
 import com.example.sistemamatricula.Modelo.Matricula;
 import com.example.sistemamatricula.Util.ConexionBd;
 
@@ -8,8 +9,53 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MatriculaDao {
+
+    public List<CursosMatriculadosDTO> cursosMatriculadosEstudiantes(int id_estudiante){
+        List<CursosMatriculadosDTO> cursos= new ArrayList<>();
+        String consultaSql= """
+                SELECT
+                id_matricula,
+                c.nombre AS curso,
+                s.dia,
+                s.hora_inicio,
+                s.hora_fin,
+                p.nombres AS profesor,
+                a.nombre AS aula
+                FROM matricula m
+                JOIN seccion s ON m.id_seccion = s.id_seccion
+                JOIN curso c ON s.id_curso = c.id_curso
+                JOIN profesor p ON s.id_profesor = p.id_profesor
+                JOIN aula a ON s.id_aula = a.id_aula
+                WHERE m.id_estudiante = ?;
+                """;
+        try (Connection connection= ConexionBd.getConexion();
+              PreparedStatement preparedStatement= connection.prepareStatement(consultaSql)){
+
+            preparedStatement.setInt(1,id_estudiante);
+            ResultSet resultSet= preparedStatement.executeQuery();
+            while (resultSet.next()){
+                CursosMatriculadosDTO cursosMatriculados= new CursosMatriculadosDTO(
+                        resultSet.getString("aula"),
+                        resultSet.getString("profesor"),
+                        resultSet.getTime("hora_fin"),
+                        resultSet.getTime("hora_inicio"),
+                        resultSet.getString("dia"),
+                        resultSet.getString("curso"),
+                        resultSet.getInt("id_matricula")
+                );
+                cursos.add(cursosMatriculados);
+            }
+
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+        return cursos;
+
+    }
 
     public int matricular(LocalDate fecha,int id_estudiante,int seccion){
         String sql = "INSERT INTO matricula (fecha, id_estudiante,id_seccion) VALUES (?, ?,?)";

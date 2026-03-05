@@ -1,18 +1,19 @@
 package com.example.sistemamatricula.Modelo;
 
+import java.sql.Time;
 import java.time.LocalTime;
 
 public class CursosMatriculadosDTO {
     private int id_matricula;
     private String nombreCurso;
     private  String dia;
-    private LocalTime hora_inicio;
-    private LocalTime hora_fin;
+    private Time hora_inicio;
+    private Time hora_fin;
     private String nombreProfesor;
     private String aula;
 
     public CursosMatriculadosDTO(String aula, String nombreProfesor,
-                                 LocalTime hora_fin, LocalTime hora_inicio,
+                                 Time hora_fin, Time hora_inicio,
                                  String dia, String nombreCurso, int id_matricula) {
         this.aula = aula;
         this.nombreProfesor = nombreProfesor;
@@ -47,19 +48,19 @@ public class CursosMatriculadosDTO {
         this.dia = dia;
     }
 
-    public LocalTime getHora_inicio() {
+    public Time getHora_inicio() {
         return hora_inicio;
     }
 
-    public void setHora_inicio(LocalTime hora_inicio) {
+    public void setHora_inicio(Time hora_inicio) {
         this.hora_inicio = hora_inicio;
     }
 
-    public LocalTime getHora_fin() {
+    public Time getHora_fin() {
         return hora_fin;
     }
 
-    public void setHora_fin(LocalTime hora_fin) {
+    public void setHora_fin(Time hora_fin) {
         this.hora_fin = hora_fin;
     }
 
