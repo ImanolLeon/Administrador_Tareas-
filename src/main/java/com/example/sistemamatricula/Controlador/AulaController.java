@@ -63,6 +63,7 @@ public class AulaController {
     }
 
     public  void verAulas(){
-
+    movimientoVentanas.mover("Aula/CapacidadAulas.fxml","Capacidad aulas");
     }
+
 }

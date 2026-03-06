@@ -23,7 +23,8 @@
 
 
         </BorderPane>
-      <Button mnemonicParsing="false" text="Registrar" onAction="#registrarProfesor"/>
-      <Button layoutX="95.0" mnemonicParsing="false" text="eliminar" onAction="#eliminarRegistroMatricula" />
+      <Button layoutX="400.0" mnemonicParsing="false" onAction="#registrarProfesor" text="Registrar" />
+        <Button mnemonicParsing="false" onAction="#cerrarSesion" text="cerrar Sesion" />
+      <Button layoutX="95.0" mnemonicParsing="false" onAction="#eliminarRegistroMatricula" text="eliminar" />
     </children>
 </AnchorPane>

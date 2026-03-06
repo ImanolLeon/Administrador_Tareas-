@@ -8,7 +8,25 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.sistemamatricula.Aula.CapacidadAulas"
+            fx:controller="com.example.sistemamatricula.Controlador.AulaCapadidadController"
             prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <BorderPane AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
+            <center>
+                <TableView fx:id="tablaAulas">
+                    <columns>
+                        <TableColumn fx:id="colSeccion" prefWidth="150" text="id_seccion" />
+                        <TableColumn fx:id="colCurso" prefWidth="80" text="curso" />
+                        <TableColumn fx:id="colAula" prefWidth="80" text="aula" />
+                        <TableColumn fx:id="colCapacidad" prefWidth="80" text="capacidad" />
+                        <TableColumn fx:id="colAlumnos" prefWidth="80" text="alumnos_inscritos" />
+                    </columns>
+                </TableView>
+            </center>
 
+
+        </BorderPane>
+        <Button layoutX="300.0" layoutY="10.0"  text="Atrás" onAction="#retroceder"/>
+
+    </children>
 </AnchorPane>

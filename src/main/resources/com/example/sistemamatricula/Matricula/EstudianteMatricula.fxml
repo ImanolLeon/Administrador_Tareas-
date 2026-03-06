@@ -2,12 +2,8 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0"
-            xmlns="http://javafx.com/javafx/17.0.12"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.sistemamatricula.Controlador.EstudianteMatriculaControlador">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistemamatricula.Controlador.EstudianteMatriculaControlador">
 
     <children>
         <BorderPane AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="40.0">
@@ -28,7 +24,8 @@
 
 
         </BorderPane>
-        <Button mnemonicParsing="false" text="matricular" onAction="#matricular"/>
-        <Button layoutX="95.0" mnemonicParsing="false" text="ver cursos matriculados" onAction="#verCursosMatriculados" />
+        <Button layoutX="94.0" mnemonicParsing="false" onAction="#matricular" text="matricular" />
+        <Button mnemonicParsing="false" onAction="#cerrarSesion" text="cerrar Sesion" />
+        <Button layoutX="170.0" mnemonicParsing="false" onAction="#verCursosMatriculados" text="ver cursos matriculados" />
     </children>
 </AnchorPane>

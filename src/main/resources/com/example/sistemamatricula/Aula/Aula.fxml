@@ -17,9 +17,9 @@
 
 
        </BorderPane>
-      <Button mnemonicParsing="false" text="crear aula" onAction="#agregarTarea"/>
-      <Button layoutX="198.0" layoutY="10.0"  text="Eliminar aula" onAction="#eliminarTarea"/>
-       <Button layoutX="300.0" layoutY="10.0"  text="Atrás" onAction="#retroceder"/>
-       <Button layoutX="300.0" layoutY="10.0"  text="ver aulas" onAction="#verAulas"/>
+      <Button mnemonicParsing="false" onAction="#agregarTarea" text="crear aula" />
+      <Button layoutX="198.0" layoutY="10.0" onAction="#eliminarTarea" text="Eliminar aula" />
+       <Button layoutX="300.0" layoutY="10.0" onAction="#retroceder" text="Atrás" />
+       <Button layoutX="437.0" layoutY="10.0" onAction="#verAulas" text="ver aulas" />
    </children>
 </AnchorPane>

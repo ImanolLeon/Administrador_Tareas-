@@ -73,6 +73,37 @@ public class MatriculaDao {
         return cursos;
 
     }
+    public boolean hayCruceHorario(int idEstudiante, int idSeccion) {
+
+        String sql = """
+        SELECT 1
+        FROM matricula m
+        JOIN seccion s ON m.id_seccion = s.id_seccion
+        JOIN seccion nueva ON nueva.id_seccion = ?
+        WHERE m.id_estudiante = ?
+        AND s.dia = nueva.dia
+        AND s.hora_inicio < nueva.hora_fin
+        AND s.hora_fin > nueva.hora_inicio
+    """;
+
+        try (Connection con = ConexionBd.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, idSeccion);
+            ps.setInt(2, idEstudiante);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return true; // hay cruce
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 
     public int matricular(LocalDate fecha,int id_estudiante,int seccion){
         String sql = "INSERT INTO matricula (fecha, id_estudiante,id_seccion) VALUES (?, ?,?)";

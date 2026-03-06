@@ -27,6 +27,10 @@ public class MatriculaService {
             return "El estudiante ya está matriculado en este curso";
 
         }
+        if (matriculaDao.hayCruceHorario(idEstudiante, idSeccion)) {
+            return "El horario se cruza con otro curso";
+
+        }
 
         if (!matriculaDao.hayCapacidad(idSeccion)) {
             return "El aula está llena";

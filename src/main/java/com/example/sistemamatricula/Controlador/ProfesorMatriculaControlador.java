@@ -2,6 +2,7 @@ package com.example.sistemamatricula.Controlador;
 
 import com.example.sistemamatricula.Alerta.AlertaFX;
 import com.example.sistemamatricula.Dao.SeccionDao;
+import com.example.sistemamatricula.Escena.MovimientoVentanas;
 import com.example.sistemamatricula.Modelo.SeccionDTO;
 import com.example.sistemamatricula.Sesion.SesionProfesor;
 import javafx.collections.FXCollections;
@@ -36,6 +37,7 @@ public class ProfesorMatriculaControlador {
     private SeccionDao seccionDAO = new SeccionDao();
     AlertaFX alertaFX= new AlertaFX();
     int idProfesorLogueado = SesionProfesor.getInstancia().getIdProfesor();
+    MovimientoVentanas movimientoVentanas = new MovimientoVentanas();
 
     @FXML
     public void initialize() {
@@ -96,6 +98,8 @@ public class ProfesorMatriculaControlador {
             alertaFX.mostrarAlerta("Error","No se puiede retirar de la seccion");
         }
     }
-
+    public  void cerrarSesion(){
+        movimientoVentanas.mover("Login.fxml","Principal");
+    }
 
 }

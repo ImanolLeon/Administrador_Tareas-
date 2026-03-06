@@ -81,4 +81,7 @@ public class EstudianteMatriculaControlador {
     public void verCursosMatriculados(){
     movimientoVentanas.mover("Matricula/cursosMatriculados.fxml","Cursos matriculados");
     }
+    public  void cerrarSesion(){
+        movimientoVentanas.mover("Login.fxml","Principal");
+    }
 }
