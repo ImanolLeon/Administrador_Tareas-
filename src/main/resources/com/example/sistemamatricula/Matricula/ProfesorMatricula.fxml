@@ -3,28 +3,43 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistemamatricula.Controlador.ProfesorMatriculaControlador">
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.sistemamatricula.Controlador.ProfesorMatriculaControlador">
+
     <children>
-        <BorderPane AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="40.0">
-            <center>
-                <TableView fx:id="tablaSecciones">
-                    <columns>
-                        <TableColumn fx:id="colIdSeccion" prefWidth="80" text="Seccion" />
-                        <TableColumn fx:id="colCurso" prefWidth="80" text="Curso" />
-                        <TableColumn fx:id="colDia" prefWidth="80" text="Dia" />
-                        <TableColumn fx:id="colHoraInicio" prefWidth="80" text="hora_inicio" />
-                        <TableColumn fx:id="colHoraFin" prefWidth="80" text="hora_fin" />
-                        <TableColumn fx:id="colAula" prefWidth="80" text="aula" />
-                        <TableColumn fx:id="colProfesor" prefWidth="80" text="profesor" />
-                    </columns>
-                </TableView>
-            </center>
 
+        <VBox spacing="10"
+              AnchorPane.topAnchor="10"
+              AnchorPane.bottomAnchor="10"
+              AnchorPane.leftAnchor="10"
+              AnchorPane.rightAnchor="10">
 
+            <!-- TABLA -->
+            <TableView fx:id="tablaSecciones" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colIdSeccion" text="Seccion" prefWidth="80"/>
+                    <TableColumn fx:id="colCurso" text="Curso" prefWidth="100"/>
+                    <TableColumn fx:id="colDia" text="Dia" prefWidth="80"/>
+                    <TableColumn fx:id="colHoraInicio" text="Hora Inicio" prefWidth="90"/>
+                    <TableColumn fx:id="colHoraFin" text="Hora Fin" prefWidth="90"/>
+                    <TableColumn fx:id="colAula" text="Aula" prefWidth="80"/>
+                    <TableColumn fx:id="colProfesor" text="Profesor" prefWidth="120"/>
+                </columns>
+            </TableView>
 
-        </BorderPane>
-      <Button layoutX="400.0" mnemonicParsing="false" onAction="#registrarProfesor" text="Registrar" />
-        <Button mnemonicParsing="false" onAction="#cerrarSesion" text="cerrar Sesion" />
-      <Button layoutX="95.0" mnemonicParsing="false" onAction="#eliminarRegistroMatricula" text="eliminar" />
+            <!-- BOTONES -->
+            <HBox spacing="15">
+                <Button text="Registrar" onAction="#registrarProfesor"/>
+                <Button text="Eliminar" onAction="#eliminarRegistroMatricula"/>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <Button text="Cerrar Sesión" onAction="#cerrarSesion"/>
+            </HBox>
+
+        </VBox>
+
     </children>
 </AnchorPane>

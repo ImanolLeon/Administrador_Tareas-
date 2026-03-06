@@ -3,26 +3,52 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistemamatricula.Controlador.CursosMatriculadosController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.sistemamatricula.Controlador.CursosMatriculadosController">
+
     <children>
-        <BorderPane AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="40.0">
+
+        <BorderPane AnchorPane.topAnchor="20.0"
+                    AnchorPane.leftAnchor="20.0"
+                    AnchorPane.rightAnchor="20.0"
+                    AnchorPane.bottomAnchor="80.0">
+
             <center>
                 <TableView fx:id="tablaSecciones">
                     <columns>
-                        <TableColumn fx:id="colIdSeccion" prefWidth="80" text="Seccion" />
-                        <TableColumn fx:id="colCurso" prefWidth="80" text="Curso" />
-                        <TableColumn fx:id="colDia" prefWidth="80" text="Dia" />
-                        <TableColumn fx:id="colHoraInicio" prefWidth="80" text="hora_inicio" />
-                        <TableColumn fx:id="colHoraFin" prefWidth="80" text="hora_fin" />
-                        <TableColumn fx:id="colAula" prefWidth="80" text="aula" />
-                        <TableColumn fx:id="colProfesor" prefWidth="80" text="profesor" />
+                        <TableColumn fx:id="colIdSeccion" prefWidth="80" text="Seccion"/>
+                        <TableColumn fx:id="colCurso" prefWidth="80" text="Curso"/>
+                        <TableColumn fx:id="colDia" prefWidth="80" text="Dia"/>
+                        <TableColumn fx:id="colHoraInicio" prefWidth="80" text="hora_inicio"/>
+                        <TableColumn fx:id="colHoraFin" prefWidth="80" text="hora_fin"/>
+                        <TableColumn fx:id="colAula" prefWidth="80" text="aula"/>
+                        <TableColumn fx:id="colProfesor" prefWidth="80" text="profesor"/>
                     </columns>
                 </TableView>
             </center>
 
-
         </BorderPane>
-        <Button mnemonicParsing="false" text="eliminar" onAction="#eliminarRegistroMatriculo"/>
-        <Button layoutX="95.0" mnemonicParsing="false" text="atrás" onAction="#retroceder" />
+
+        <HBox spacing="15"
+              AnchorPane.bottomAnchor="20"
+              AnchorPane.leftAnchor="20"
+              AnchorPane.rightAnchor="20">
+
+            <children>
+
+                <Button text="Eliminar"
+                        onAction="#eliminarRegistroMatriculo"/>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <Button text="Atrás"
+                        onAction="#retroceder"/>
+
+            </children>
+
+        </HBox>
+
     </children>
 </AnchorPane>

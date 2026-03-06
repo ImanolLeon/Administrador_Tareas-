@@ -1,32 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistemamatricula.Controlador.RegistroUsuarioControlador">
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.sistemamatricula.Controlador.RegistroUsuarioControlador">
 
    <children>
-      <Button fx:id="registrarUsuario" layoutX="20.0" layoutY="360.0" mnemonicParsing="false" onAction="#registrarDatos" text="IngresarDatos" />
-      <Button layoutX="530.0" layoutY="360.0" mnemonicParsing="false" text="Atras" onAction="#retroceder" />
-      <TextField fx:id="txt_dni" layoutX="199.0" layoutY="62.0" />
-      <TextField fx:id="txt_correo" layoutX="199.0" layoutY="109.0" />
-      <PasswordField fx:id="txt_contrasena" layoutX="199.0" layoutY="152.0" />
-      <Label layoutX="117.0" layoutY="62.0" text="dni" />
-      <Label layoutX="117.0" layoutY="109.0" text="correo" />
-      <Label layoutX="117.0" layoutY="158.0" text="contraseña" />
 
-      <RadioButton layoutX="430.0" layoutY="30.0" text="Estudiante">
-         <toggleGroup>
-            <ToggleGroup fx:id="Grupo1"/>
-         </toggleGroup>
-      </RadioButton>
+      <VBox alignment="CENTER" spacing="25"
+            AnchorPane.topAnchor="20"
+            AnchorPane.leftAnchor="0"
+            AnchorPane.rightAnchor="0">
 
-      <RadioButton
-              layoutX="430.0"
-              layoutY="58.0"
-              text="Profesor"
-              toggleGroup="$Grupo1"/>
+         <!-- Título -->
+         <Label text="Registro de Usuario"
+                style="-fx-font-size: 22px; -fx-font-weight: bold;" />
 
+         <!-- Formulario -->
+         <GridPane alignment="CENTER" hgap="15" vgap="15">
+
+            <Label text="DNI:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="txt_dni" prefWidth="220"
+                       GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Correo:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="txt_correo" prefWidth="220"
+                       GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="Contraseña:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <PasswordField fx:id="txt_contrasena" prefWidth="220"
+                           GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+         </GridPane>
+
+         <!-- Tipo de usuario -->
+         <HBox alignment="CENTER" spacing="30">
+            <RadioButton text="Estudiante">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Grupo1"/>
+               </toggleGroup>
+            </RadioButton>
+
+            <RadioButton text="Profesor"
+                         toggleGroup="$Grupo1"/>
+         </HBox>
+
+         <!-- Botones -->
+         <HBox alignment="CENTER" spacing="40">
+            <Button fx:id="registrarUsuario"
+                    text="Ingresar Datos"
+                    onAction="#registrarDatos"
+                    prefWidth="140"/>
+
+            <Button text="Atrás"
+                    onAction="#retroceder"
+                    prefWidth="120"/>
+         </HBox>
+
+      </VBox>
 
    </children>
+
 </AnchorPane>
