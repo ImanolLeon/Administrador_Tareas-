@@ -9,16 +9,16 @@
             <center>
                 <TableView fx:id="tablaSecciones">
                     <columns>
+                        <TableColumn fx:id="colIdSeccion" prefWidth="80" text="Seccion" />
                         <TableColumn fx:id="colCurso" prefWidth="80" text="Curso" />
                         <TableColumn fx:id="colDia" prefWidth="80" text="Dia" />
                         <TableColumn fx:id="colHoraInicio" prefWidth="80" text="hora_inicio" />
                         <TableColumn fx:id="colHoraFin" prefWidth="80" text="hora_fin" />
-                        <TableColumn fx:id="colProfesor" prefWidth="80" text="profesor" />
                         <TableColumn fx:id="colAula" prefWidth="80" text="aula" />
+                        <TableColumn fx:id="colProfesor" prefWidth="80" text="profesor" />
                     </columns>
                 </TableView>
             </center>
-
 
 
         </BorderPane>

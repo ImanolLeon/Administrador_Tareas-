@@ -20,5 +20,6 @@
       <Button mnemonicParsing="false" text="crear aula" onAction="#agregarTarea"/>
       <Button layoutX="198.0" layoutY="10.0"  text="Eliminar aula" onAction="#eliminarTarea"/>
        <Button layoutX="300.0" layoutY="10.0"  text="Atrás" onAction="#retroceder"/>
+       <Button layoutX="300.0" layoutY="10.0"  text="ver aulas" onAction="#verAulas"/>
    </children>
 </AnchorPane>

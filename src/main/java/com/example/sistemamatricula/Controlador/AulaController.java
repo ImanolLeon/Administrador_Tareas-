@@ -61,4 +61,8 @@ public class AulaController {
         movimientoVentanas.mover("Aula/CreacionAula.fxml","Crear aula");
 
     }
+
+    public  void verAulas(){
+
+    }
 }

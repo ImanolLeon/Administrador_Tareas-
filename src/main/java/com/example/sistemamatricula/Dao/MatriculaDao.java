@@ -14,6 +14,23 @@ import java.util.List;
 
 public class MatriculaDao {
 
+    public boolean eliminarMatricula(int idEstudiante, int idSeccion){
+
+        String sql = "DELETE FROM matricula WHERE id_estudiante = ? AND id_seccion = ?";
+
+        try (Connection connection = ConexionBd.getConexion();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, idEstudiante);
+            ps.setInt(2, idSeccion);
+
+            return ps.executeUpdate() > 0;
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public List<CursosMatriculadosDTO> cursosMatriculadosEstudiantes(int id_estudiante){
         List<CursosMatriculadosDTO> cursos= new ArrayList<>();
         String consultaSql= """

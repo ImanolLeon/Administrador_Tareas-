@@ -19,7 +19,6 @@ import java.sql.Time;
 public class EstudianteMatriculaControlador {
     @FXML
     private TableView<SeccionDTO> tablaSecciones;
-
     @FXML
     private TableColumn<SeccionDTO,String> colCurso;
     @FXML

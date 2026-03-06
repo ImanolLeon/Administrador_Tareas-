@@ -80,6 +80,54 @@ public class SeccionDao {
         return false;
     }
 
+    public List<SeccionDTO> listarSeccionesDeEstudiantes(int idEstudiante){
+
+        List<SeccionDTO> secciones = new ArrayList<>();
+
+        String sql = """
+       SELECT s.id_seccion AS seccion,
+                          s.dia,
+                          s.hora_inicio,
+                          s.hora_fin,
+                          c.nombre AS curso,
+                          p.nombres AS profesor,
+                          a.nombre AS aula
+                   FROM matricula m
+                   INNER JOIN seccion s ON m.id_seccion = s.id_seccion
+                   INNER JOIN curso c ON s.id_curso = c.id_curso
+                   INNER JOIN aula a ON s.id_aula = a.id_aula
+                   INNER JOIN profesor p ON s.id_profesor = p.id_profesor
+                   WHERE m.id_estudiante = ?;
+    """;
+
+        try (Connection connection = ConexionBd.getConexion();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+
+            preparedStatement.setInt(1,idEstudiante);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+
+                SeccionDTO seccion = new SeccionDTO(
+                        rs.getInt("seccion"),
+                        rs.getString("curso"),
+                        rs.getString("dia"),
+                        rs.getTime("hora_inicio"),
+                        rs.getTime("hora_fin"),
+                        rs.getString("aula"),
+                        rs.getString("profesor")
+                );
+
+                secciones.add(seccion);
+            }
+
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+
+        return secciones;
+    }
     public List<SeccionDTO> listarSeccionesEstudiantes(int idEstudiante){
 
         List<SeccionDTO> secciones = new ArrayList<>();
