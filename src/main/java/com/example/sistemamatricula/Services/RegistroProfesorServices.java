@@ -44,8 +44,7 @@ public class RegistroProfesorServices {
 
         //guardar Dao
        int  id_profesor= profesorDao.registrarProfesor(profesor);
-        //Obetener usuario
-        SesionProfesor.getInstancia().setIdProfesor(profesor.getId_profesor());
+
 
 
 
@@ -54,6 +53,7 @@ public class RegistroProfesorServices {
 
         }else{
             System.out.println("Profesor REGISTRADO!!");
+            //Obetener usuario
             SesionProfesor.getInstancia().setIdProfesor(id_profesor);
 
         }

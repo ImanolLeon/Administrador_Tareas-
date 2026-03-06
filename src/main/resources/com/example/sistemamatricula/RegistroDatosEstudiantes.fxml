@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -9,40 +10,52 @@
             prefWidth="600.0" prefHeight="400.0">
 
     <children>
-        <GridPane layoutX="50" layoutY="40"
-                  hgap="10" vgap="15">
 
-            <!-- Nombres -->
-            <Label text="Nombres:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtNombres"
-                       GridPane.rowIndex="0" GridPane.columnIndex="1"
-                       prefWidth="250"/>
+        <VBox alignment="CENTER" spacing="25"
+              AnchorPane.topAnchor="20"
+              AnchorPane.leftAnchor="0"
+              AnchorPane.rightAnchor="0">
 
-            <!-- Apellidos -->
-            <Label text="Apellidos:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtApellidos"
-                       GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <!-- Título -->
+            <Label text="Registro de Estudiante"
+                   style="-fx-font-size: 22px; -fx-font-weight: bold;" />
 
-            <!-- Teléfono -->
-            <Label text="Teléfono:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-            <TextField fx:id="txtTelefono"
-                       GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <!-- Formulario -->
+            <GridPane alignment="CENTER" hgap="15" vgap="15">
 
-            <!-- Fecha de nacimiento -->
-            <Label text="Fecha de nacimiento:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-            <DatePicker fx:id="dpFechaNacimiento"
-                        GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                <!-- Nombres -->
+                <Label text="Nombres:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtNombres"
+                           prefWidth="250"
+                           GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <!-- Apellidos -->
+                <Label text="Apellidos:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtApellidos"
+                           prefWidth="250"
+                           GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <!-- Teléfono -->
+                <Label text="Teléfono:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtTelefono"
+                           prefWidth="250"
+                           GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <!-- Fecha de nacimiento -->
+                <Label text="Fecha de nacimiento:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="dpFechaNacimiento"
+                            prefWidth="250"
+                            GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            </GridPane>
 
             <!-- Botón -->
-            <Button text="Registrar"
-                    GridPane.rowIndex="4"
-                    GridPane.columnIndex="1"
-                    onAction="#registrarEstudiante"
-            />
+            <Button text="Registrar Estudiante"
+                    prefWidth="180"
+                    onAction="#registrarEstudiante"/>
 
+        </VBox>
 
-
-        </GridPane>
     </children>
 
 </AnchorPane>

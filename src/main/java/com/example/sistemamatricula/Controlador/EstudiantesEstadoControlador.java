@@ -2,6 +2,7 @@ package com.example.sistemamatricula.Controlador;
 
 import com.example.sistemamatricula.Alerta.AlertaFX;
 import com.example.sistemamatricula.Dao.UsuarioDao;
+import com.example.sistemamatricula.Escena.MovimientoVentanas;
 import com.example.sistemamatricula.Modelo.AlumnoDTO;
 import com.example.sistemamatricula.Modelo.Usuario;
 import javafx.collections.FXCollections;
@@ -25,6 +26,7 @@ public class EstudiantesEstadoControlador {
 
     UsuarioDao usuarioDao = new UsuarioDao();
     AlertaFX alertaFX= new AlertaFX();
+    MovimientoVentanas movimientoVentanas = new MovimientoVentanas();
 
 
     @FXML
@@ -54,7 +56,7 @@ public class EstudiantesEstadoControlador {
             return;
         }
 
-        // 1️⃣ Crear Usuario real
+        //  Crear Usuario real
         Usuario usuario = new Usuario(
                 seleccionado.getId_alumno(),
                 null,
@@ -63,10 +65,10 @@ public class EstudiantesEstadoControlador {
                 null
         );
 
-        // 2️⃣ Aplicar patrón State
+        // Aplicar patrón State
         usuario.activar();
 
-        // 3️⃣ Guardar nuevo estado en BD
+        //  Guardar nuevo estado en BD
         boolean exito = usuarioDao.actualizarEstado(
                 usuario.getIdUsuario(),
                 usuario.getIdEstado()
@@ -89,7 +91,7 @@ public class EstudiantesEstadoControlador {
             return;
         }
 
-        // 1️⃣ Crear Usuario real con su estado actual
+        // Crear Usuario real con su estado actual
         Usuario usuario = new Usuario(
                 seleccionado.getId_alumno(),
                 null,
@@ -98,10 +100,10 @@ public class EstudiantesEstadoControlador {
                 null
         );
 
-        // 2️⃣ Aplicar patrón State
+        //  Aplicar patrón State
         usuario.bloquear();
 
-        // 3️⃣ Guardar nuevo estado en BD
+        // Guardar nuevo estado en BD
         boolean exito = usuarioDao.actualizarEstado(
                 usuario.getIdUsuario(),
                 usuario.getIdEstado()
@@ -153,6 +155,10 @@ public class EstudiantesEstadoControlador {
         } else {
             alertaFX.mostrarAlerta("Error","orden sin exito");
         }
+    }
+
+    public void retroceder(){
+        movimientoVentanas.mover("Principal.fxml","Principal");
     }
 }
 

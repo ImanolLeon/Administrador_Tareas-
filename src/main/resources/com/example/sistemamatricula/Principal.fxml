@@ -1,18 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistemamatricula.Controlador.PrincipalControlador">
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.sistemamatricula.Controlador.PrincipalControlador">
+
    <children>
-      <Button mnemonicParsing="false" onAction="#crearCurso" text="crear curso" />
-      <Button layoutX="500.0" mnemonicParsing="false" onAction="#eliminarCurso" text="eliminar curso" />
-      <Button layoutX="315.0" layoutY="4.0" mnemonicParsing="false" onAction="#irAulas" text="ver aulas" />
-      <Button layoutX="174.0" layoutY="4.0" mnemonicParsing="false" onAction="#irSecciones" text="Crear Seccion" />
-      <Button layoutX="174.0" layoutY="50.0" mnemonicParsing="false" onAction="#verSecciones" text="ver Secciones" />
-      <Button layoutX="284.0" layoutY="50.0" mnemonicParsing="false" onAction="#verEstudiante" text="Estudiantes" />
 
+      <VBox alignment="TOP_CENTER" spacing="40"
+            AnchorPane.topAnchor="20"
+            AnchorPane.leftAnchor="0"
+            AnchorPane.rightAnchor="0">
 
+         <!-- Titulo -->
+         <Label text="Sistema de Matrícula"
+                style="-fx-font-size: 26px; -fx-font-weight: bold;" />
+
+         <!-- Panel de botones -->
+         <GridPane alignment="CENTER" hgap="25" vgap="25">
+
+            <Button text="Crear Curso"
+                    onAction="#crearCurso"
+                    prefWidth="180" prefHeight="45"
+                    GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+
+            <Button text="Eliminar Curso"
+                    onAction="#eliminarCurso"
+                    prefWidth="180" prefHeight="45"
+                    GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Button text="Ver Aulas"
+                    onAction="#irAulas"
+                    prefWidth="180" prefHeight="45"
+                    GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+
+            <Button text="Crear Sección"
+                    onAction="#irSecciones"
+                    prefWidth="180" prefHeight="45"
+                    GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+
+            <Button text="Ver Secciones"
+                    onAction="#verSecciones"
+                    prefWidth="180" prefHeight="45"
+                    GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Button text="Estudiantes"
+                    onAction="#verEstudiante"
+                    prefWidth="180" prefHeight="45"
+                    GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+
+         </GridPane>
+
+      </VBox>
 
    </children>
+
 </AnchorPane>

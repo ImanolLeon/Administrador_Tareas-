@@ -79,11 +79,10 @@ public class RegistroUsuarioControlador {
             System.out.println("Error al registrar usuario");
 
         }
-
-
-
-
     }
 
+    public void retroceder(){
+        movimientoVentanas.mover("Login.fxml","Login");
+    }
 
 }

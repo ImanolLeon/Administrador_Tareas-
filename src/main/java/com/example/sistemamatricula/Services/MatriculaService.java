@@ -1,6 +1,6 @@
 package com.example.sistemamatricula.Services;
 
-import com.example.sistemamatricula.Dao.DetalleMatriculaDao;
+
 import com.example.sistemamatricula.Dao.MatriculaDao;
 import com.example.sistemamatricula.Modelo.Curso;
 import com.example.sistemamatricula.Modelo.DetalleMatricula;
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class MatriculaService {
     private MatriculaDao  matriculaDao= new MatriculaDao();
-    private  DetalleMatriculaDao detalleDao = new DetalleMatriculaDao();
+
 
     public String matricularEstudiante(int idEstudiante, int idSeccion) {
 

@@ -20,8 +20,9 @@
 
 
        </BorderPane>
-      <Button mnemonicParsing="false" text="Bloquear" onAction="#bloquearUsuario" />
+      <Button mnemonicParsing="false" onAction="#bloquearUsuario" text="Bloquear" />
        <Button layoutX="109.0" mnemonicParsing="false" onAction="#suspenderUsuario" text="Suspender" />
        <Button layoutX="193.0" mnemonicParsing="false" onAction="#activarUsuario" text="Activar" />
+       <Button layoutX="262.0" mnemonicParsing="false" onAction="#retroceder" text="atrás" />
    </children>
 </AnchorPane>

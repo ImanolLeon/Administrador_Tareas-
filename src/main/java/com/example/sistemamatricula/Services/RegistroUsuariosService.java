@@ -2,6 +2,7 @@ package com.example.sistemamatricula.Services;
 
 import com.example.sistemamatricula.Dao.RegistroEstudianteDao;
 import com.example.sistemamatricula.Dao.RegistroUsuarioDao;
+import com.example.sistemamatricula.Sesion.SesionAlumno;
 
 import java.time.LocalDate;
 
@@ -14,6 +15,9 @@ public class RegistroUsuariosService {
 
         if(dni==null || dni.isBlank()){
             throw new RuntimeException("Dni obligatorio");
+        }
+        if(dni.length()>7){
+            throw new RuntimeException("Dni invalida");
         }
 
         int id_rol =convertirRol(rol);
@@ -56,9 +60,12 @@ public class RegistroUsuariosService {
             throw  new RuntimeException("Error en la fecha de nacimiento del estudiante");
         }
 
-        boolean estudianteRegistrado = registroEstudianteDao.ingresarDatosEstudiante(nombre,apellido,telefono,fecha,id_usuario);
-        if (!estudianteRegistrado){
+        int  estudianteRegistrado = registroEstudianteDao.ingresarDatosEstudiante(nombre,apellido,telefono,fecha,id_usuario);
+        if (estudianteRegistrado<=0){
             throw  new RuntimeException("Error en el agregao del Estudiante");
+        }else{
+            SesionAlumno.getInstance().setId_alumno(estudianteRegistrado);
+            System.out.println(estudianteRegistrado);
         }
 
     }
