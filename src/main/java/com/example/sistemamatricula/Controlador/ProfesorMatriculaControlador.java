@@ -72,14 +72,20 @@ public class ProfesorMatriculaControlador {
             return;
         }
 
-       boolean exito = seccionDAO.asignarProfesor(seleccion.getId_seccion(),idProfesorLogueado);
-
-        if (exito) {
-            alertaFX.mostrarAlerta("Bien","Asignado correctamente");
-            cargarSecciones();
-        } else {
-            alertaFX.mostrarAlerta("Error","La sección ya tiene profesor");
+        if (seccionDAO.profesorTieneCruceHorario(idProfesorLogueado,seleccion.getId_seccion())){
+           //Si hay curce retorna true
+            alertaFX.mostrarAlerta("Error","Cruce de horario");
+        }else{
+            boolean exito = seccionDAO.asignarProfesor(seleccion.getId_seccion(),idProfesorLogueado);
+            if (exito) {
+                alertaFX.mostrarAlerta("Bien","Asignado correctamente");
+                cargarSecciones();
+            } else {
+                alertaFX.mostrarAlerta("Error","La sección ya tiene profesor");
+            }
         }
+
+
     }
 
     public void eliminarRegistroMatricula(){

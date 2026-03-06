@@ -26,6 +26,36 @@ public class SeccionDao {
             throw  new RuntimeException(e);
         }
     }
+    public boolean profesorTieneCruceHorario(int idProfesor, int idSeccion) {
+
+        String sql = """
+        SELECT 1
+        FROM seccion s
+        JOIN seccion nueva ON nueva.id_seccion = ?
+        WHERE s.id_profesor = ?
+        AND s.dia = nueva.dia
+        AND s.hora_inicio < nueva.hora_fin
+        AND s.hora_fin > nueva.hora_inicio
+    """;
+
+        try (Connection con = ConexionBd.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, idSeccion);
+            ps.setInt(2, idProfesor);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return true; // hay cruce
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 
     public boolean asignarProfesor( int idSeccion, int idProfesor){
 
